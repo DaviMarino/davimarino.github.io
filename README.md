@@ -19,3 +19,18 @@ If you are developing a production application, we recommend using TypeScript wi
 # Atualizar o projeto
 
 npm run deploy
+
+# Arquitetura
+
+public/
+├── image/           # As imagens estaticas
+└── video/           # Os videos estaticos
+src/
+├── constants/       # Cores, temas e configurações fixas
+├── data/            # Seus dados (JSONs, listas de projetos)
+├── components/      # Blocos de Lego (botões, gráficos, cards)
+│   ├── charts/      # Gráficos específicos
+│   ├── layout/      # Navbar, Footer
+│   └── sections/    # Seções inteiras (Hero, Skills)
+├── pages/           # As "telas" da aplicação
+└── App.jsx          # O Maestro que rege tudo
