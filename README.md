@@ -34,3 +34,16 @@ src/
 │   └── sections/    # Seções inteiras (Hero, Skills)
 ├── pages/           # As "telas" da aplicação
 └── App.jsx          # O Maestro que rege tudo
+
+
+# Compatibilidade Windows e Linux
+
+# 1. Remove a pasta node_modules inteira (o -rf força a remoção recursiva)
+rm -rf node_modules
+
+# 2. Reinstala todas as dependências. 
+# O npm vai baixar os binários novamente e atribuir as permissões corretas para o Fedora automaticamente.
+npm install
+
+# 4. Tente rodar o projeto novamente
+npm run dev

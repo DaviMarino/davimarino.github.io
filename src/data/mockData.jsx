@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  Cpu, BarChart2, Database, Terminal, Code, Monitor, 
+  Cpu, BarChart2, Database, Terminal, Code, 
   Layout, Server, HardDrive, Zap, CheckCircle2, Workflow, 
   BrainCircuit, MessageSquareCode, Sparkles 
 } from 'lucide-react';
@@ -27,78 +27,180 @@ export const projectsData = [
   {
     id: 1,
     title: "Mach1: Copiloto e Telemetria",
-    icon: <Cpu size={24} color={theme.number} />,
+    icon: <Cpu size={24} />,
     painPoint: "Os pilotos virtuais precisam de mais recursos analíticos.",
-    desc: "Co-piloto virtual que captura telemetria em tempo real de simuladores como Automobilista 2, armazena e gera análises comparativas para encontrar a evolução no detalhe.",
-    fullDescription: "Este projeto nasceu da necessidade de unir minha paixão por automobilismo virtual com engenharia/ciência de dados. A solução captura pacotes UDP do jogo a 60Hz, processa em tempo real usando Python, armazena de forma estruturada para gerar análises entre voltas a cada metro da corrida, após gerar uma base robusta, usamos para desenvolver um Machine Learning Copiloto com a responsabilidade de auxiliar durante a corrida com sugestões de estratégias, o que evoluiu para um projeto Text-to-Speak, com o Copiloto sintetizando sua voz para falar com o piloto via rádio, como o usuário se autentica pela Steam, seria possível a comunidade comparar voltas entre pilotos reais.",
-    pain: "A dor fica aqui",
+    desc: "Co-piloto virtual que captura telemetria em tempo real de simuladores como Automobilista 2.",
+    fullDescription: "Este projeto nasceu da necessidade de unir minha paixão por automobilismo virtual com engenharia de dados. A solução captura pacotes UDP do jogo a 60Hz, processa em tempo real usando Python, armazena de forma estruturada para gerar análises entre voltas a cada metro da corrida.",
+    pain: "A falta de feedback imediato impedia a evolução dos pilotos.",
     solution: "Arquitetura híbrida com processo Python de baixa latência, motor TTS Neural e Machine Learning.",
-    techs: ["Python", "Dash", "Plotly", "Flask", "SQLite", "Task Assync", "Shared Memory", "TTS Neural", "Machine Learning"],
+    techs: ["Python", "Dash", "Plotly", "Flask", "SQLite", "Task Assync", "Shared Memory", "TTS Neural"],
     architectureType: "desktop_app",
-    devNotes: "O maior desafio foi lidar com a latência (<200ms), otimizei o processo separando em tarefas assíncronas e orquestrando a frequência conforme a importância.",
-    learnings: "Aprendi profundamente sobre Shared Memory e processamento assíncrono (asyncio).",
+    
+    identity: {
+      themeColor: "#e74c3c",
+      bgGradient: "from-red-900/20 via-[#0d1117] to-[#0d1117]",
+    },
+
+    devNotes: "O maior desafio foi lidar com a latência (<200ms).",
+    learnings: "Aprendi profundamente sobre Shared Memory e processamento assíncrono.",
     images: [
-      { url: "img/mach1_001.png", caption: "Dashboard Principal" },
-      { url: "img/mach1_002.png", caption: "Análise de telemetria" },
-      { url: "img/mach1_003.png", caption: "Gráficos comparativos" }
-    ]
+      { type: "image", url: "img/mach1_001.png", caption: "Dashboard Principal" },
+      { type: "image", url: "img/mach1_002.png", caption: "Análise de telemetria" },
+      { type: "image", url: "img/mach1_003.png", caption: "Gráficos comparativos" }
+    ],
+    // ATENÇÃO: Código alinhado à esquerda para evitar erro de sintaxe
+    mermaidCode: `graph TD
+subgraph Simulador
+A[Assetto Corsa / AMS2] -->|UDP 60Hz| B(Python Listener)
+end
+subgraph Backend
+B --> C{Shared Memory}
+C -->|Leitura| D[FastAPI / Socket]
+C -->|Delta| E[AI Copilot]
+end
+subgraph Frontend
+D -->|JSON| F[React Dashboard]
+E -->|Audio| G[TTS Neural]
+G -->|Voz| H((Piloto))
+end
+classDef ai fill:#161b22,stroke:#e74c3c,stroke-width:2px;
+classDef std fill:#161b22,stroke:#30363d,stroke-width:1px;
+class E,G ai;
+class A,B,C,D,F,H std;`
   },
   {
     id: 2,
     title: "Power BI: Storytelling e Dataviz",
-    icon: <BarChart2 size={24} color={theme.func} />,
+    icon: <BarChart2 size={24} />,
     painPoint: "Extrair análises avançadas com visuais modernos.",
-    desc: "Este portfolio foi desenvolvido para explorar análises detalhadas com toda modernidade disponível, o objetivo principal é demonstrar que um velocímetro bonito não representa nada sem um storytelling adequado.",
-    fullDescription: "O projeto nasceu a partir de alguns cursos de Storytelling e Dataviz, focado em desenvolver visuais que sequer existiam na prateleira, para mostrar que é possível desenvolver análises detalhadas aplicando correlação, filtros cruzados, neste projeto conseguimos ver uma amostra de todos os detalhes que uma base de cliente pode oferecer, cruzando com a base de produtos.",
-    pain: "Desenvolver relatórios bonitos não melhoram o negócio sem o storytelling ou profundidade de conhecimento.",
-    solution: "Orquestrador ETL que carrega em Star Schema otimizado para leitura, e desenvolver novos visuais com HTML e SVG.",
+    desc: "Portfólio desenvolvido para explorar análises detalhadas com modernidade.",
+    fullDescription: "O projeto nasceu focado em desenvolver visuais que sequer existiam na prateleira, para mostrar que é possível desenvolver análises detalhadas aplicando correlação e filtros cruzados.",
+    pain: "Relatórios bonitos não melhoram o negócio sem profundidade de conhecimento.",
+    solution: "Orquestrador ETL que carrega em Star Schema otimizado e novos visuais com HTML e SVG.",
     techs: ["Power BI", "SQL Server", "DAX", "Power Query M", "HTML", "SVG"],
     architectureType: "etl_pipeline",
-    devNotes: "Modelagem dos dados melhorou a performance do relatório em 9x",
-    learnings: "Desenvolvimento de visuais com HTML e SVG abriu uma janela de oportunidades na minha mente.",
+
+    identity: {
+      themeColor: "#f1c40f",
+      bgGradient: "from-yellow-900/10 via-[#0d1117] to-[#0d1117]",
+    },
+
+    devNotes: "Modelagem dos dados melhorou a performance do relatório em 9x.",
+    learnings: "Desenvolvimento de visuais com HTML e SVG abriu uma janela de oportunidades.",
     images: [
-      { url: "img/pbi_001.png", caption: "Dashboard Principal" },
-      { url: "img/pbi_002.png", caption: "Analitico de Clientes" },
-      { url: "img/pbi_003.png", caption: "Analítico de Produtos" }
-    ]
+      { type: "image", url: "img/pbi_001.png", caption: "Dashboard Principal" },
+      { type: "image", url: "img/pbi_002.png", caption: "Analitico de Clientes" },
+      { type: "image", url: "img/pbi_003.png", caption: "Analítico de Produtos" }
+    ],
+    mermaidCode: `graph LR
+subgraph Fontes
+ERP[(SQL Server)]
+XLS[Metas Excel]
+end
+subgraph ETL
+ERP -->|M| P[Staging]
+XLS -->|M| P
+P -->|Transf| DW[(Data Warehouse)]
+DW -->|Star Schema| M[Modelo Tabular]
+end
+subgraph Viz
+M -->|DAX| KPI[Calculo KPIs]
+KPI -->|Render| V[HTML/SVG]
+KPI -->|Show| S[Dashboard]
+end
+classDef dw fill:#161b22,stroke:#f1c40f,stroke-width:2px;
+class DW,M,KPI dw;`
   },
   {
     id: 3,
     title: "Piloto AI: Rede Neural autônoma",
-    icon: <Cpu size={24} color={theme.keyword} />,
-    painPoint: "Projeto para desenvolvimento de uma rede neural capaz de tomar decisões em um carro através de sensores.",
-    desc: "Esse projeto nasceu para analisar o modelo de aprendizado de diversas redes neurais, onde que cada uma brilha e onde falha.",
-    fullDescription: "Criei esse projeto usando diversas bibliotecas e metodologias de redes neurais para estudar seu método de aprendizado, usando como referência a pista de interlagos, um carro autônomo com 5 sensores de aproximação, sensor de velocidade e simulação de física como gravidade e inércia, foi fascinante observar cada modelo aprendendo no seu tempo, com micro-ajustes em parâmetros notar grandes resultados e associar ao funcionamento de um cérebro humano.",
-    pain: "Como aprimorar o aprendizado de uma rede neural",
-    solution: "Um projeto com Redes Neurais, tempo e pasciência.",
-    techs: ["Python", "SciPy"],
+    icon: <Cpu size={24} />,
+    painPoint: "Desenvolver uma rede neural capaz de tomar decisões de pilotagem.",
+    desc: "Estudo sobre modelos de aprendizado de redes neurais.",
+    fullDescription: "Usei a pista de Interlagos como referência para treinar um carro autônomo com 5 sensores de aproximação, sensor de velocidade e física simulada.",
+    pain: "Como aprimorar o aprendizado de uma rede neural 'black box'?",
+    solution: "Um projeto com Redes Neurais, tempo, paciência e ajustes finos.",
+    techs: ["Python", "SciPy", "TensorFlow", "Pandas"],
     architectureType: "data_quality",
-    devNotes: "Calibração e teste dos sensores.",
+
+    identity: {
+      themeColor: "#8e44ad",
+      bgGradient: "from-purple-900/20 via-[#0d1117] to-[#0d1117]",
+    },
+
+    devNotes: "A calibração e teste dos sensores foi crítica.",
     learnings: "Observabilidade dos micro-ajustes no lugar certo na medida certa.",
     images: [
-      { url: "img/piloto_ai_001.png", caption: "Carro autônomo" },
-      { url: "img/piloto_ai_002.png", caption: "Sensores de colisão" },
-      { url: "img/piloto_ai_003.png", caption: "Curva" }
-    ]
+      { type: "image", url: "img/piloto_ai_001.png", caption: "Carro autônomo" },
+      { type: "image", url: "img/piloto_ai_002.png", caption: "Sensores de colisão" },
+      { type: "image", url: "img/piloto_ai_003.png", caption: "Curva" }
+    ],
+    mermaidCode: `graph TD
+subgraph Inputs
+S1(Distancia Frontal) --> NN
+S2(Distancia Lateral) --> NN
+S3(Velocidade) --> NN
+end
+subgraph BlackBox
+NN[Input Layer] --> H1[Hidden 1]
+H1 --> H2[Hidden 2]
+H2 --> OUT[Output]
+end
+subgraph Atuadores
+OUT -->|0.0-1.0| A1[Acelerador]
+OUT -->|-1.0-1.0| A2[Volante]
+OUT -->|0/1| A3[Freio]
+end
+A1 --> S3
+A2 --> S1
+classDef neural fill:#161b22,stroke:#8e44ad,stroke-width:2px;
+class NN,H1,H2,OUT neural;`
   },
   {
     id: 4,
     title: "DRS - Analytics",
-    icon: <BarChart2 size={24} color={theme.string} />,
-    painPoint: "Desenvolver o Dashboard perfeito: Python com o melhor dos mundos no backend e React com o melhor dos mundos no frontend.",
+    icon: <BarChart2 size={24} />,
+    painPoint: "O Dashboard perfeito: Backend Python robusto + Frontend React moderno.",
     desc: "Sistema de acompanhamento e gestão de indicadores ultra eficiente.",
-    fullDescription: "Criei esse projeto visando mesclar o melhor de dois mundos paralelos, o frontend e o backend, quando descobri que existe essa possibilidade, imediatamente comecei a desenvolver um protótipo de relatório que se tornou esse monstro robusto com análises completas, detalhadas e customizadas para cada tipo de visualização, perfil de usuário e permissão a nível de linha, com o Python orquestrando os dados, calculando os dados com Polars e servindo o React, esse sem dúvidas foi o projeto de relatório mais satisfatório até o momento.",
-    pain: "Como desenvolver visuais de primeira linha para exibir minhas anáises em Python.",
-    solution: "Arquitetura híbrida entre Python e React.",
-    techs: ["Python", "React", "FastAPI", "Polars", "Task Assync", "SQL Server", "Parquet", "Duckdb"],
+    fullDescription: "Este projeto visa mesclar o melhor de dois mundos: Python orquestrando e calculando dados (Polars) e React servindo a interface.",
+    pain: "Como exibir análises complexas do Python em uma interface web?",
+    solution: "Arquitetura híbrida entre Python (FastAPI/Polars) e React.",
+    techs: ["Python", "React", "FastAPI", "Polars", "Redis", "SQL Server"],
     architectureType: "data_quality",
-    devNotes: "Resultados incríveis com a potência do Python para processar e servir dados, enquanto o React lindo e elegante exibe os dados com os componentes mais avançados em Javascript.",
-    learnings: "Arquitetura e orquestração de dados para servir de forma eficiênte, o principal ponto é trabalhar com cache e servir o cliente com os dados mais recente possível sem repetir requisições desnecessárias no banco de dados.",
+
+    identity: {
+      themeColor: "#3498db",
+      bgGradient: "from-blue-900/20 via-[#0d1117] to-[#0d1117]",
+    },
+
+    devNotes: "Resultados incríveis combinando Polars e React.",
+    learnings: "Trabalhar com cache inteligente (Redis) para servir o dado mais recente.",
     images: [
-      { url: "img/drs_001.png", caption: "Dashboard Principal" },
-      { url: "img/drs_002.png", caption: "Análise de Faturamento" },
-      { url: "img/drs_003.png", caption: "Gestão de Carteira" }
-    ]
+      { type: "image", url: "img/drs_001.png", caption: "Dashboard Principal" },
+      { type: "image", url: "img/drs_002.png", caption: "Análise de Faturamento" },
+      { type: "image", url: "img/drs_003.png", caption: "Gestão de Carteira" }
+    ],
+    // CORREÇÃO AQUI: Aspas nos nomes compostos "User (React)" e "Polars Engine"
+    mermaidCode: `sequenceDiagram
+participant User as "User (React)"
+participant API as FastAPI
+participant Cache as Redis
+participant Engine as "Polars Engine"
+participant DB as SQL Server
+User->>API: GET /kpi
+API->>Cache: Check Key
+alt Cache Hit
+Cache-->>API: JSON (10ms)
+API-->>User: Render
+else Cache Miss
+API->>Engine: Process
+Engine->>DB: Select
+DB-->>Engine: Raw Data
+Engine->>Engine: GroupBy
+Engine-->>API: DataFrame
+API->>Cache: Save
+API-->>User: Render
+end`
   }
 ];
 
