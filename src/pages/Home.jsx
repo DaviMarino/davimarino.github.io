@@ -36,7 +36,7 @@ const Home = ({ setSelectedProject }) => {
                 <div className="grid grid-cols-[auto,1fr] gap-4">
                   {/* Linhas numeradas */}
                   <div className="flex flex-col text-right select-none opacity-30" style={{ color: theme.secondaryText }}>
-                    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14].map(n => <span key={n}>{n}</span>)}
+                    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(n => <span key={n}>{n}</span>)}
                   </div>
                   {/* O código vem do mockData agora */}
                   <pre style={{ color: theme.text }}>
