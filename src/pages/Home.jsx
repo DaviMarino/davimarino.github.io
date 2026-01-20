@@ -2,7 +2,7 @@ import React from 'react';
 import { Linkedin, Github, ExternalLink, GitBranch, BarChart2, Layers } from 'lucide-react';
 import { theme } from '../constants/theme';
 // Adicionamos o profileCode na importação
-import { personalInfo, projectsData, profileCode } from '../data/mockData';
+import { personalInfo, projectsData, profileCode, experienceData } from '../data/mockData';
 import ProjectRow from '../components/sections/ProjectRow';
 import SkillRadarChart from '../components/charts/SkillRadarChart';
 import ImpactChart from '../components/charts/ImpactChart';
@@ -73,22 +73,70 @@ const Home = ({ setSelectedProject }) => {
         </div>
       </section>
 
-      {/* Experience */}
+      {/* Experience Section */}
       <section id="experiencia" className="py-20 border-t" style={{ borderColor: theme.border }}>
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-12 flex items-center gap-3"><span style={{ color: theme.keyword }}>SELECT * FROM</span> experience</h2>
-          <div className="space-y-8">
-            {[
-              { c: "Cielo", r: "Cientista de Dados Sênior", t: "3 anos", d: "Governança de Datalake e modelos preditivos.", tech: ["Python", "SQL", "Azure"] },
-              { c: "Goop", r: "Analista Pleno | PO", t: "4 anos", d: "Estruturação da área de dados do zero.", tech: ["ETL", "Power BI"] },
-              { c: "Atento", r: "Analista de Dados", t: "4 anos", d: "Automação de relatórios e VBA.", tech: ["Excel", "VBA"] }
-            ].map((e, i) => (
+          <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
+            <span style={{ color: theme.keyword }}>SELECT * FROM</span> experience
+          </h2>
+          
+          <div className="space-y-12"> {/* Aumentei o espaçamento entre empresas */}
+            {experienceData.map((e, i) => (
               <div key={i} className="group relative pl-8 border-l-2" style={{ borderColor: theme.border }}>
-                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full border-4 bg-[#27ae60] border-[#0d1117]"></div>
-                <div className="p-6 rounded-lg border bg-[#161b22] border-[#30363d] hover:border-opacity-100">
-                  <div className="flex justify-between mb-2"><h3 className="text-xl font-bold text-white">{e.r}</h3><span className="text-sm text-slate-500">@ {e.c}</span></div>
-                  <p className="text-slate-400 mb-4">{e.d}</p>
-                  <div className="flex gap-2">{e.tech.map((t, j) => <span key={j} className="text-xs px-2 py-1 rounded bg-[#0d1117] border border-[#30363d] text-[#79c0ff]">{t}</span>)}</div>
+                {/* Bolinha da Timeline */}
+                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full border-4 transition-all group-hover:scale-125" 
+                     style={{ backgroundColor: theme.func, borderColor: theme.bg }}></div>
+                
+                {/* Card da Experiência */}
+                <div className="p-6 rounded-lg border bg-[#161b22] border-[#30363d] hover:border-opacity-100 transition-all">
+                  
+                  {/* Cabeçalho do Card */}
+                  <div className="flex flex-col md:flex-row justify-between mb-4 md:items-center">
+                    <div>
+                      <h3 className="text-xl font-bold text-white">{e.role}</h3>
+                      <span className="text-sm font-mono" style={{ color: theme.variable }}>@ {e.company}</span>
+                    </div>
+                    <span className="text-xs font-mono px-2 py-1 rounded border mt-2 md:mt-0 w-fit" 
+                          style={{ backgroundColor: theme.bg, borderColor: theme.border, color: theme.secondaryText }}>
+                      {e.period}
+                    </span>
+                  </div>
+
+                  {/* Renderização do Conteúdo Rico */}
+                  <div className="text-slate-400 mb-6 text-sm leading-relaxed space-y-3">
+                    {e.content.map((block, idx) => {
+                      if (block.type === 'paragraph') {
+                        return <p key={idx}>{block.text}</p>;
+                      }
+                      if (block.type === 'header') {
+                        return <h4 key={idx} className="font-bold mt-4 mb-2 text-slate-200">{block.text}</h4>;
+                      }
+                      if (block.type === 'list') {
+                        return (
+                          <ul key={idx} className="space-y-2 ml-1">
+                            {block.items.map((item, itemIdx) => (
+                              <li key={itemIdx} className="flex gap-2">
+                                <span style={{ color: theme.func }}>✔</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2 pt-4 border-t border-[#30363d]">
+                    {e.tech.map((t, j) => (
+                      <span key={j} className="text-xs px-2 py-1 rounded font-mono border" 
+                            style={{ backgroundColor: theme.bg, borderColor: theme.border, color: theme.keyword }}>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
                 </div>
               </div>
             ))}

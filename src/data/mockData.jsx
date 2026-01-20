@@ -264,3 +264,87 @@ export const profileCode = (
     {'        '}<span style={{ color: theme.keyword }}>return</span> decisao <span style={{ color: theme.comment }}># Impacto no negócio</span>
   </>
 );
+
+export const experienceData = [
+  {
+    company: "Cielo",
+    role: "Cientista de Dados Sênior",
+    period: "39 meses",
+    tech: ["Python", "SQL", "Azure", "Power BI", "AWS Athena", "Databricks"],
+    // Estrutura em blocos para permitir formatação rica
+    content: [
+      { 
+        type: "paragraph", 
+        text: "Na Cielo, atuei na equipe de Ciência de Dados aplicada ao Atendimento, sendo responsável pelo desenvolvimento e monitoramento de indicadores críticos para executivos e conselheiros." 
+      },
+      { 
+        type: "header", 
+        text: "📊 Desenvolvimento e Otimização de Relatórios:" 
+      },
+      { 
+        type: "list", 
+        items: [
+          "Criação e implementação de +30 dashboards analíticos em Power BI, aplicando técnicas avançadas de DAX e Power Query para otimização de performance.",
+          "Monitoramento e gestão do Power BI Service, garantindo alta disponibilidade e acessibilidade dos relatórios, mesmo sob alto volume de publicações.",
+          "Governança de dados no Datalake, lidando com +35 milhões de registros diários, assegurando qualidade e integridade dos dados por meio de scripts automatizados em Python."
+        ]
+      },
+      { 
+        type: "header", 
+        text: "📂 Gestão e Monitoramento de Dados:" 
+      },
+      { 
+        type: "list", 
+        items: [
+          "Construção de indicadores críticos utilizando SQL Server, Oracle DB, Impala Datalake e AWS Athena, estruturando processos de ETL eficientes.",
+          "Desenvolvimento de ferramentas personalizadas em Python para padronização e integração de dados no AWS Athena, otimizando a conexão com o Power BI.",
+          "Implementação de ferramentas de monitoramento de qualidade de dados (Z-Score para volumetria e validação textual/numérica)."
+        ]
+      }
+    ]
+  },
+  {
+    company: "Goop",
+    role: "Analista Pleno | PO",
+    period: "56 meses",
+    tech: ["ETL", "Power BI", "SQL", "Modelagem de Dados"],
+    content: [
+      { 
+        type: "paragraph", 
+        text: "Atuei na estruturação da área de dados do zero, transformando processos manuais em pipelines de inteligência." 
+      },
+      { 
+        type: "header", 
+        text: "🚀 Principais Entregas:" 
+      },
+      { 
+        type: "list", 
+        items: [
+          "Mapeamento de processos e definição de KPIs estratégicos junto à diretoria.",
+          "Implementação do primeiro Data Warehouse da empresa, centralizando dados dispersos.",
+          "Automação de cargas de dados reduzindo o tempo de fechamento mensal em 70%."
+        ]
+      }
+    ]
+  },
+  {
+    company: "Atento",
+    role: "Analista de Dados",
+    period: "54 meses",
+    tech: ["Excel", "VBA", "Access", "Automação"],
+    content: [
+      { 
+        type: "paragraph", 
+        text: "Foco em automação de relatórios operacionais e desenvolvimento de ferramentas para aumento de produtividade." 
+      },
+      { 
+        type: "list", 
+        items: [
+          "Desenvolvimento de macros complexas em VBA para consolidação de planilhas.",
+          "Criação de dashboards operacionais em Excel para acompanhamento de filas de atendimento.",
+          "Redução de erros manuais através de validações automatizadas de input de dados."
+        ]
+      }
+    ]
+  }
+];
