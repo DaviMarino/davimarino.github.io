@@ -33,7 +33,7 @@ export const projectsData = [
     fullDescription: "Este projeto nasceu da necessidade de unir minha paixão por automobilismo virtual com engenharia de dados. A solução captura pacotes UDP do jogo a 60Hz, processa em tempo real usando Python, armazena de forma estruturada para gerar análises entre voltas a cada metro da corrida.",
     pain: "A falta de feedback imediato impedia a evolução dos pilotos.",
     solution: "Arquitetura híbrida com processo Python de baixa latência, motor TTS Neural e Machine Learning.",
-    techs: ["Python", "Dash", "Plotly", "Flask", "SQLite", "Task Assync", "Shared Memory", "TTS Neural"],
+    techs: ["Python", "Dash", "Plotly", "Flask", "SQLite", "Async Tasks", "Shared Memory", "TTS Neural"],
     architectureType: "desktop_app",
     
     identity: {
@@ -46,27 +46,28 @@ export const projectsData = [
     images: [
       { type: "image", url: "img/mach1_001.png", caption: "Dashboard Principal" },
       { type: "image", url: "img/mach1_002.png", caption: "Análise de telemetria" },
-      { type: "image", url: "img/mach1_003.png", caption: "Gráficos comparativos" }
+      { type: "image", url: "img/mach1_003.png", caption: "Gráficos comparativos" },
+      { type: "gif", url: "gif/mach1_001.gif", caption: "Navegação da Home" },
+      { type: "gif", url: "gif/mach1_002.gif", caption: "Navegação do Analítico" }
     ],
-    // ATENÇÃO: Código alinhado à esquerda para evitar erro de sintaxe
-    mermaidCode: `graph TD
-subgraph Simulador
-A[Assetto Corsa / AMS2] -->|UDP 60Hz| B(Python Listener)
-end
-subgraph Backend
-B --> C{Shared Memory}
-C -->|Leitura| D[FastAPI / Socket]
-C -->|Delta| E[AI Copilot]
-end
-subgraph Frontend
-D -->|JSON| F[React Dashboard]
-E -->|Audio| G[TTS Neural]
-G -->|Voz| H((Piloto))
-end
-classDef ai fill:#161b22,stroke:#e74c3c,stroke-width:2px;
-classDef std fill:#161b22,stroke:#30363d,stroke-width:1px;
-class E,G ai;
-class A,B,C,D,F,H std;`
+    mermaidCode: `flowchart TD
+      subgraph Sim [Simulador]
+        A["Assetto Corsa / AMS2"] -->|UDP 60Hz| B("Python Listener")
+      end
+      subgraph Back [Backend]
+        B --> C{"Shared Memory"}
+        C -->|Leitura| D["FastAPI / Socket"]
+        C -->|Delta| E["AI Copilot"]
+      end
+      subgraph Front [Frontend]
+        D -->|JSON| F["React Dashboard"]
+        E -->|Audio| G["TTS Neural"]
+        G -->|Voz| H(("Piloto"))
+      end
+      classDef ai fill:#161b22,stroke:#e74c3c,stroke-width:2px,color:#fff;
+      classDef std fill:#161b22,stroke:#30363d,stroke-width:1px,color:#fff;
+      class E,G ai;
+      class A,B,C,D,F,H std;`
   },
   {
     id: 2,
@@ -92,24 +93,24 @@ class A,B,C,D,F,H std;`
       { type: "image", url: "img/pbi_002.png", caption: "Analitico de Clientes" },
       { type: "image", url: "img/pbi_003.png", caption: "Analítico de Produtos" }
     ],
-    mermaidCode: `graph LR
-subgraph Fontes
-ERP[(SQL Server)]
-XLS[Metas Excel]
-end
-subgraph ETL
-ERP -->|M| P[Staging]
-XLS -->|M| P
-P -->|Transf| DW[(Data Warehouse)]
-DW -->|Star Schema| M[Modelo Tabular]
-end
-subgraph Viz
-M -->|DAX| KPI[Calculo KPIs]
-KPI -->|Render| V[HTML/SVG]
-KPI -->|Show| S[Dashboard]
-end
-classDef dw fill:#161b22,stroke:#f1c40f,stroke-width:2px;
-class DW,M,KPI dw;`
+    mermaidCode: `flowchart LR
+      subgraph Fontes [Fontes de Dados]
+        ERP[("SQL Server")]
+        XLS["Metas Excel"]
+      end
+      subgraph ETL [Processamento ETL]
+        ERP -->|M| P["Staging"]
+        XLS -->|M| P
+        P -->|Transf| DW[("Data Warehouse")]
+        DW -->|"Star Schema"| M["Modelo Tabular"]
+      end
+      subgraph Viz [Visualização]
+        M -->|DAX| KPI["Calculo KPIs"]
+        KPI -->|Render| V["HTML/SVG"]
+        KPI -->|Show| S["Dashboard"]
+      end
+      classDef dw fill:#161b22,stroke:#f1c40f,stroke-width:2px,color:#fff;
+      class DW,M,KPI dw;`
   },
   {
     id: 3,
@@ -128,40 +129,40 @@ class DW,M,KPI dw;`
       bgGradient: "from-purple-900/20 via-[#0d1117] to-[#0d1117]",
     },
 
-    devNotes: "A calibração e teste dos sensores foi crítica.",
-    learnings: "Observabilidade dos micro-ajustes no lugar certo na medida certa.",
+    devNotes: "A calibração e o teste dos sensores foram críticos.",
+    learnings: "Observabilidade dos micro-ajustes no lugar certo.",
     images: [
       { type: "image", url: "img/piloto_ai_001.png", caption: "Carro autônomo" },
       { type: "image", url: "img/piloto_ai_002.png", caption: "Sensores de colisão" },
       { type: "image", url: "img/piloto_ai_003.png", caption: "Curva" }
     ],
-    mermaidCode: `graph TD
-subgraph Inputs
-S1(Distancia Frontal) --> NN
-S2(Distancia Lateral) --> NN
-S3(Velocidade) --> NN
-end
-subgraph BlackBox
-NN[Input Layer] --> H1[Hidden 1]
-H1 --> H2[Hidden 2]
-H2 --> OUT[Output]
-end
-subgraph Atuadores
-OUT -->|0.0-1.0| A1[Acelerador]
-OUT -->|-1.0-1.0| A2[Volante]
-OUT -->|0/1| A3[Freio]
-end
-A1 --> S3
-A2 --> S1
-classDef neural fill:#161b22,stroke:#8e44ad,stroke-width:2px;
-class NN,H1,H2,OUT neural;`
+    mermaidCode: `flowchart TD
+      subgraph Inputs [Sensores]
+        S1("Distancia Frontal") --> NN
+        S2("Distancia Lateral") --> NN
+        S3("Velocidade") --> NN
+      end
+      subgraph BlackBox [Processamento Neural]
+        NN["Input Layer"] --> H1["Hidden 1"]
+        H1 --> H2["Hidden 2"]
+        H2 --> OUT["Output"]
+      end
+      subgraph Atuadores [Controle]
+        OUT -->|"0.0 a 1.0"| A1["Acelerador"]
+        OUT -->|"-1.0 a 1.0"| A2["Volante"]
+        OUT -->|"0 ou 1"| A3["Freio"]
+      end
+      A1 --> S3
+      A2 --> S1
+      classDef neural fill:#161b22,stroke:#8e44ad,stroke-width:2px,color:#fff;
+      class NN,H1,H2,OUT neural;`
   },
   {
     id: 4,
     title: "DRS - Analytics",
     icon: <BarChart2 size={24} />,
     painPoint: "O Dashboard perfeito: Backend Python robusto + Frontend React moderno.",
-    desc: "Sistema de acompanhamento e gestão de indicadores ultra eficiente.",
+    desc: "Sistema de acompanhamento e gestão de indicadores ultraeficiente.",
     fullDescription: "Este projeto visa mesclar o melhor de dois mundos: Python orquestrando e calculando dados (Polars) e React servindo a interface.",
     pain: "Como exibir análises complexas do Python em uma interface web?",
     solution: "Arquitetura híbrida entre Python (FastAPI/Polars) e React.",
@@ -178,9 +179,11 @@ class NN,H1,H2,OUT neural;`
     images: [
       { type: "image", url: "img/drs_001.png", caption: "Dashboard Principal" },
       { type: "image", url: "img/drs_002.png", caption: "Análise de Faturamento" },
-      { type: "image", url: "img/drs_003.png", caption: "Gestão de Carteira" }
+      { type: "image", url: "img/drs_003.png", caption: "Gestão de Carteira" },
+      { type: "gif", url: "gif/drs_001.gif", caption: "Navegação da tela Pedidos" },
+      { type: "gif", url: "gif/drs_002.gif", caption: "Navegação da tela Faturamento" },
+      { type: "gif", url: "gif/drs_003.gif", caption: "Navegação da tela Clientes" }
     ],
-    // CORREÇÃO AQUI: Aspas nos nomes compostos "User (React)" e "Polars Engine"
     mermaidCode: `sequenceDiagram
 participant User as "User (React)"
 participant API as FastAPI
@@ -245,7 +248,7 @@ export const skillsData = [
 
 export const profileCode = (
   <>
-    <span style={{ color: theme.comment }}># v1.0.3</span>{'\n'}
+    <span style={{ color: theme.comment }}># v1.0.4</span>{'\n'}
     <span style={{ color: theme.keyword }}>import</span> pandas <span style={{ color: theme.keyword }}>as</span> pd{'\n'}
     <span style={{ color: theme.keyword }}>from</span> career <span style={{ color: theme.keyword }}>import</span> Experience{'\n\n'}
     

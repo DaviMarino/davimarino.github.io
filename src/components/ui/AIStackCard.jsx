@@ -62,7 +62,7 @@ const AIStackCard = () => {
                <div className="flex items-center gap-3 p-2 rounded hover:bg-white/5 transition-colors group/gem">
                   <div className="p-1.5 rounded bg-emerald-500/10 text-emerald-400"><Code size={16} /></div>
                   <div className="flex-1">
-                    <div className="text-xs font-bold text-slate-200">Refactor & Optmizer</div>
+                    <div className="text-xs font-bold text-slate-200">Refactor & Optimizer</div>
                     <div className="text-[10px] text-slate-500">Performance Tuning (Polars/Pandas)</div>
                   </div>
                   <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 opacity-50"></div>
