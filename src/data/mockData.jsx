@@ -245,7 +245,7 @@ export const skillsData = [
 
 export const profileCode = (
   <>
-    <span style={{ color: theme.comment }}># v1.0.2</span>{'\n'}
+    <span style={{ color: theme.comment }}># v1.0.3</span>{'\n'}
     <span style={{ color: theme.keyword }}>import</span> pandas <span style={{ color: theme.keyword }}>as</span> pd{'\n'}
     <span style={{ color: theme.keyword }}>from</span> career <span style={{ color: theme.keyword }}>import</span> Experience{'\n\n'}
     

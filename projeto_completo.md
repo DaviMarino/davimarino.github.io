@@ -1,4 +1,4 @@
-# ARQUIVO: ./eslint.config.js
+# ARQUIVO: .\eslint.config.js
 ```javascript
 import js from '@eslint/js'
 import globals from 'globals'
@@ -32,7 +32,7 @@ export default defineConfig([
 
 ```
 
-# ARQUIVO: ./index.html
+# ARQUIVO: .\index.html
 ```html
 <!doctype html>
 <html lang="en">
@@ -50,19 +50,7 @@ export default defineConfig([
 
 ```
 
-# ARQUIVO: ./vite.config.js
-```javascript
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  base: "/",
-})
-```
-
-# ARQUIVO: ./package.json
+# ARQUIVO: .\package.json
 ```json
 {
   "name": "portfolio-davi",
@@ -79,6 +67,7 @@ export default defineConfig({
   },
   "dependencies": {
     "lucide-react": "^0.562.0",
+    "mermaid": "^11.12.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
@@ -101,92 +90,14 @@ export default defineConfig({
 
 ```
 
-# ARQUIVO: ./postcss.config.js
-```javascript
-export default {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-}
-```
-
-# ARQUIVO: ./tailwind.config.js
-```javascript
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
-```
-
-# ARQUIVO: ./README.md
-```md
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
-
-# Atualizar o projeto
-
-npm run deploy
-
-# Arquitetura
-
-public/
-├── image/           # As imagens estaticas
-└── video/           # Os videos estaticos
-src/
-├── constants/       # Cores, temas e configurações fixas
-├── data/            # Seus dados (JSONs, listas de projetos)
-├── components/      # Blocos de Lego (botões, gráficos, cards)
-│   ├── charts/      # Gráficos específicos
-│   ├── layout/      # Navbar, Footer
-│   └── sections/    # Seções inteiras (Hero, Skills)
-├── pages/           # As "telas" da aplicação
-└── App.jsx          # O Maestro que rege tudo
-
-
-# Compatibilidade Windows e Linux
-
-# 1. Remove a pasta node_modules inteira (o -rf força a remoção recursiva)
-rm -rf node_modules
-
-# 2. Reinstala todas as dependências. 
-# O npm vai baixar os binários novamente e atribuir as permissões corretas para o Fedora automaticamente.
-npm install
-
-# 4. Tente rodar o projeto novamente
-npm run dev
-```
-
-# ARQUIVO: ./pack_project.py
+# ARQUIVO: .\pack_project.py
 ```py
 import os
 
 # Configurações
 OUTPUT_FILE = "projeto_completo.md"
-IGNORE_DIRS = {'node_modules', '.git', 'dist', 'build', '.vscode', '__pycache__', 'pack_project.py', 'README.md'}
-IGNORE_FILES = {'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml', OUTPUT_FILE}
+IGNORE_DIRS = {'node_modules', '.git', 'dist', 'build', '.vscode', '__pycache__'}
+IGNORE_FILES = {'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml', OUTPUT_FILE, 'readme.md'}
 ALLOWED_EXTENSIONS = {
     '.js', '.jsx', '.ts', '.tsx',  # React/JS
     '.css', '.scss', '.html',      # Estilos/Markups
@@ -205,7 +116,7 @@ def pack_project():
             dirs[:] = [d for d in dirs if d not in IGNORE_DIRS]
             
             for file in files:
-                if file in IGNORE_FILES or not is_text_file(file):
+                if file.lower() in IGNORE_FILES or not is_text_file(file):
                     continue
                 
                 filepath = os.path.join(root, file)
@@ -235,7 +146,44 @@ if __name__ == "__main__":
     print(f"\nConcluído! Envie o arquivo '{OUTPUT_FILE}'.")
 ```
 
-# ARQUIVO: ./src/App.css
+# ARQUIVO: .\postcss.config.js
+```javascript
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+```
+
+# ARQUIVO: .\tailwind.config.js
+```javascript
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+# ARQUIVO: .\vite.config.js
+```javascript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  base: "/",
+})
+```
+
+# ARQUIVO: .\src\App.css
 ```css
 #root {
   max-width: 1280px;
@@ -282,33 +230,7 @@ if __name__ == "__main__":
 
 ```
 
-# ARQUIVO: ./src/index.css
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-html {
-  scroll-behavior: smooth;
-}
-```
-
-# ARQUIVO: ./src/main.jsx
-```javascript
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
-
-```
-
-# ARQUIVO: ./src/App.jsx
+# ARQUIVO: .\src\App.jsx
 ```javascript
 import React, { useState, useEffect } from 'react';
 import { Mail } from 'lucide-react';
@@ -383,7 +305,7 @@ const App = () => {
 export default App;
 ```
 
-# ARQUIVO: ./src/App_old.jsx
+# ARQUIVO: .\src\App_old.jsx
 ```javascript
 import React, { useState, useEffect } from 'react';
 import { 
@@ -1084,7 +1006,33 @@ const App = () => {
 export default App;
 ```
 
-# ARQUIVO: ./src/components/charts/ArchitectureDiagram.jsx
+# ARQUIVO: .\src\index.css
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+```
+
+# ARQUIVO: .\src\main.jsx
+```javascript
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+```
+
+# ARQUIVO: .\src\components\charts\ArchitectureDiagram.jsx
 ```javascript
 import React from 'react';
 import { Layout, Server, Database, HardDrive, GitBranch } from 'lucide-react';
@@ -1147,7 +1095,7 @@ const ArchitectureDiagram = ({ type }) => {
 export default ArchitectureDiagram;
 ```
 
-# ARQUIVO: ./src/components/charts/ImpactChart.jsx
+# ARQUIVO: .\src\components\charts\ImpactChart.jsx
 ```javascript
 import React from 'react';
 import { theme } from '../../constants/theme';
@@ -1200,7 +1148,47 @@ const ImpactChart = () => (
 export default ImpactChart;
 ```
 
-# ARQUIVO: ./src/components/charts/SkillRadarChart.jsx
+# ARQUIVO: .\src\components\charts\MermaidDiagram.jsx
+```javascript
+import React, { useEffect, useRef } from 'react';
+import mermaid from 'mermaid';
+
+// Inicializa uma única vez
+mermaid.initialize({ 
+  startOnLoad: false,
+  theme: 'dark', // Tema escuro padrão do mermaid
+});
+
+const MermaidDiagram = ({ chartCode }) => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (chartCode && ref.current) {
+      // 1. Reseta o conteúdo para o código texto original
+      ref.current.innerHTML = chartCode;
+      ref.current.removeAttribute('data-processed');
+      
+      // 2. Manda desenhar
+      mermaid.run({
+        nodes: [ref.current]
+      }).catch(err => console.error("Erro Mermaid:", err));
+    }
+  }, [chartCode]);
+
+  return (
+    // Fundo cinza escuro fixo para garantir contraste
+    <div className="p-4 bg-[#0d1117] overflow-x-auto border border-gray-700 rounded">
+      <div ref={ref} className="mermaid">
+        {chartCode}
+      </div>
+    </div>
+  );
+};
+
+export default MermaidDiagram;
+```
+
+# ARQUIVO: .\src\components\charts\SkillRadarChart.jsx
 ```javascript
 import React from 'react';
 import { theme } from '../../constants/theme';
@@ -1266,7 +1254,7 @@ const SkillRadarChart = () => {
 export default SkillRadarChart;
 ```
 
-# ARQUIVO: ./src/components/layout/Navbar.jsx
+# ARQUIVO: .\src\components\layout\Navbar.jsx
 ```javascript
 import React from 'react';
 import { Terminal } from 'lucide-react';
@@ -1295,7 +1283,7 @@ const Navbar = ({ scrollToSection, isScrolled }) => {
 export default Navbar;
 ```
 
-# ARQUIVO: ./src/components/sections/LandingSection.jsx
+# ARQUIVO: .\src\components\sections\LandingSection.jsx
 ```javascript
 import React from 'react';
 import { AlertTriangle } from 'lucide-react';
@@ -1325,52 +1313,180 @@ export default LandingSection;
 
 ```
 
-# ARQUIVO: ./src/components/sections/ProjectRow.jsx
+# ARQUIVO: .\src\components\sections\ProjectGallery.jsx
+```javascript
+import React, { useState } from 'react';
+import { Play, Image as ImageIcon, FileVideo } from 'lucide-react'; // Renomeando Image para evitar conflito
+import { theme } from '../../constants/theme';
+
+const ProjectGallery = ({ mediaItems }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  if (!mediaItems || mediaItems.length === 0) return null;
+
+  const activeItem = mediaItems[activeIndex];
+  const isVideo = activeItem.type === 'video';
+
+  return (
+    <div className="w-full my-12 animate-in fade-in duration-700">
+      
+      {/* Cabeçalho da "Janela" */}
+      <div className="flex items-center justify-between px-4 py-2 rounded-t-lg border-x border-t"
+           style={{ backgroundColor: theme.card, borderColor: theme.border }}>
+        <div className="flex gap-2">
+          <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
+          <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+          <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
+        </div>
+        <div className="text-xs font-mono opacity-60">
+           media_viewer.exe — {activeIndex + 1}/{mediaItems.length}
+        </div>
+        <div className="w-10"></div> {/* Espaçador para centralizar */}
+      </div>
+
+      {/* Área Principal de Visualização (The Monitor) */}
+      <div className="relative w-full aspect-video bg-black border-x border-b overflow-hidden flex items-center justify-center group"
+           style={{ borderColor: theme.border }}>
+        
+        {isVideo ? (
+          <video 
+            key={activeItem.url} // Key força o reload ao trocar de vídeo
+            src={activeItem.url} 
+            className="w-full h-full object-contain"
+            controls
+            autoPlay={false} // Evita sustos, deixa o usuário dar play
+          />
+        ) : (
+          <img 
+            src={activeItem.url} 
+            alt={activeItem.caption} 
+            className="w-full h-full object-contain"
+          />
+        )}
+
+        {/* Legenda Flutuante (Overlay) */}
+        <div className="absolute bottom-4 left-4 right-4 bg-black/70 backdrop-blur-sm p-3 rounded border border-white/10 text-center transition-opacity opacity-0 group-hover:opacity-100">
+          <p className="text-sm text-slate-200 font-mono">{activeItem.caption}</p>
+        </div>
+      </div>
+
+      {/* Lista de Miniaturas (Thumbnails) */}
+      <div className="flex gap-3 mt-4 overflow-x-auto pb-2 scrollbar-hide">
+        {mediaItems.map((item, index) => {
+          const isActive = index === activeIndex;
+          return (
+            <button
+              key={index}
+              onClick={() => setActiveIndex(index)}
+              className={`relative flex-shrink-0 w-24 h-16 rounded border overflow-hidden transition-all ${
+                isActive ? 'ring-2 ring-offset-1 ring-offset-[#0d1117]' : 'opacity-50 hover:opacity-100'
+              }`}
+              style={{ 
+                borderColor: isActive ? theme.func : theme.border,
+                ringColor: theme.func 
+              }}
+            >
+              {/* Ícone indicador de tipo */}
+              <div className="absolute top-1 right-1 z-10">
+                {item.type === 'video' ? 
+                  <FileVideo size={12} className="text-white drop-shadow-md" /> : 
+                  <ImageIcon size={12} className="text-white drop-shadow-md" />
+                }
+              </div>
+
+              {/* Thumbnail (Se for vídeo, tenta pegar o frame ou mostra um placeholder escuro) */}
+              {item.type === 'video' ? (
+                <div className="w-full h-full bg-slate-800 flex items-center justify-center">
+                   <Play size={20} className="text-white/50" />
+                </div>
+              ) : (
+                <img src={item.url} className="w-full h-full object-cover" alt="thumb" />
+              )}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default ProjectGallery;
+```
+
+# ARQUIVO: .\src\components\sections\ProjectRow.jsx
 ```javascript
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { theme } from '../../constants/theme';
 
 const ProjectRow = ({ project, onViewProject }) => {
+  // CORREÇÃO: Filtramos apenas o que é imagem para o carrossel do card
+  const validImages = project.images.filter(img => !img.type || img.type === 'image');
+  
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
   const nextImage = (e) => {
     e.stopPropagation();
-    setCurrentImgIndex((prev) => (prev + 1) % project.images.length);
+    if (validImages.length > 1) {
+      setCurrentImgIndex((prev) => (prev + 1) % validImages.length);
+    }
   };
 
   const prevImage = (e) => {
     e.stopPropagation();
-    setCurrentImgIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+    if (validImages.length > 1) {
+      setCurrentImgIndex((prev) => (prev - 1 + validImages.length) % validImages.length);
+    }
   };
+
+  // Fallback caso não tenha imagem nenhuma
+  const currentImage = validImages[currentImgIndex] || { url: '', caption: '' };
 
   return (
     <div className="rounded-xl border overflow-hidden mb-8 flex flex-col lg:flex-row shadow-lg transition-all hover:border-opacity-50 bg-[#161b22] border-[#30363d] group">
+      
       {/* Lado Esquerdo: Carrossel */}
       <div className="lg:w-1/3 relative bg-black/50 border-r border-[#30363d] min-h-[250px] group/image">
         <div className="w-full h-full relative overflow-hidden">
-          <img
-            src={project.images[currentImgIndex].url}
-            alt={project.title}
-            className="w-full h-full object-cover opacity-60 transition-opacity group-hover/image:opacity-80"
-          />
+          {currentImage.url ? (
+            <img
+              src={currentImage.url}
+              alt={project.title}
+              className="w-full h-full object-cover opacity-60 transition-opacity group-hover/image:opacity-80"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-slate-600 bg-[#0d1117]">Sem Imagem</div>
+          )}
+          
           <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117] via-transparent to-transparent"></div>
+          
           {/* Badge do Índice */}
-          <div className="absolute top-4 right-4 text-[10px] font-mono px-2 py-1 rounded bg-black/70 text-white border border-white/10">
-            {currentImgIndex + 1}/{project.images.length}
-          </div>
+          {validImages.length > 0 && (
+            <div className="absolute top-4 right-4 text-[10px] font-mono px-2 py-1 rounded bg-black/70 text-white border border-white/10">
+              {currentImgIndex + 1}/{validImages.length}
+            </div>
+          )}
+          
           {/* Legenda */}
-          <div className="absolute bottom-4 left-4 right-4 text-xs text-center text-slate-300 bg-black/50 p-1 rounded backdrop-blur-sm truncate">
-            {project.images[currentImgIndex].caption}
-          </div>
+          {currentImage.caption && (
+            <div className="absolute bottom-4 left-4 right-4 text-xs text-center text-slate-300 bg-black/50 p-1 rounded backdrop-blur-sm truncate">
+              {currentImage.caption}
+            </div>
+          )}
         </div>
-        {/* Botões de Navegação */}
-        <button onClick={prevImage} className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover/image:opacity-100 hover:bg-emerald-600 transition-all"><ChevronLeft size={16} /></button>
-        <button onClick={nextImage} className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover/image:opacity-100 hover:bg-emerald-600 transition-all"><ChevronRight size={16} /></button>
+
+        {/* Botões só aparecem se tiver mais de 1 imagem VÁLIDA */}
+        {validImages.length > 1 && (
+          <>
+            <button onClick={prevImage} className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover/image:opacity-100 hover:bg-emerald-600 transition-all"><ChevronLeft size={16} /></button>
+            <button onClick={nextImage} className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover/image:opacity-100 hover:bg-emerald-600 transition-all"><ChevronRight size={16} /></button>
+          </>
+        )}
       </div>
 
-      {/* Lado Direito: Conteúdo */}
+      {/* Lado Direito: Conteúdo (Mantém igual) */}
       <div className="lg:w-2/3 p-8 flex flex-col">
+        {/* ... (código existente do texto e botões) ... */}
         <div className="flex justify-between items-start mb-2">
           <h3 className="text-2xl font-bold text-white flex items-center gap-2">
             {project.icon} {project.title}
@@ -1391,7 +1507,7 @@ const ProjectRow = ({ project, onViewProject }) => {
             className="flex items-center gap-2 px-4 py-2 rounded-lg font-bold text-white transition-all hover:scale-105"
             style={{ backgroundColor: theme.func }}
           >
-            Ver Projeto <ChevronRight size={18} />
+             Ver Projeto <ChevronRight size={18} />
           </button>
         </div>
       </div>
@@ -1402,7 +1518,7 @@ const ProjectRow = ({ project, onViewProject }) => {
 export default ProjectRow;
 ```
 
-# ARQUIVO: ./src/components/sections/SkillsTable.jsx
+# ARQUIVO: .\src\components\sections\SkillsTable.jsx
 ```javascript
 import React from 'react';
 import AIStackCard from '../ui/AIStackCard';
@@ -1442,7 +1558,7 @@ const SkillsTable = () => {
 export default SkillsTable;
 ```
 
-# ARQUIVO: ./src/components/ui/AIStackCard.jsx
+# ARQUIVO: .\src\components\ui\AIStackCard.jsx
 ```javascript
 import React from 'react';
 import { Sparkles, Workflow, Zap, CheckCircle2, BrainCircuit, Code, MessageSquareCode } from 'lucide-react';
@@ -1534,7 +1650,7 @@ const AIStackCard = () => {
 export default AIStackCard;
 ```
 
-# ARQUIVO: ./src/constants/theme.jsx
+# ARQUIVO: .\src\constants\theme.jsx
 ```javascript
 // src/constants/theme.js
 export const theme = {
@@ -1557,11 +1673,11 @@ export const theme = {
 };
 ```
 
-# ARQUIVO: ./src/data/mockData.jsx
+# ARQUIVO: .\src\data\mockData.jsx
 ```javascript
 import React from 'react';
 import { 
-  Cpu, BarChart2, Database, Terminal, Code, Monitor, 
+  Cpu, BarChart2, Database, Terminal, Code, 
   Layout, Server, HardDrive, Zap, CheckCircle2, Workflow, 
   BrainCircuit, MessageSquareCode, Sparkles 
 } from 'lucide-react';
@@ -1588,78 +1704,180 @@ export const projectsData = [
   {
     id: 1,
     title: "Mach1: Copiloto e Telemetria",
-    icon: <Cpu size={24} color={theme.number} />,
+    icon: <Cpu size={24} />,
     painPoint: "Os pilotos virtuais precisam de mais recursos analíticos.",
-    desc: "Co-piloto virtual que captura telemetria em tempo real de simuladores como Automobilista 2, armazena e gera análises comparativas para encontrar a evolução no detalhe.",
-    fullDescription: "Este projeto nasceu da necessidade de unir minha paixão por automobilismo virtual com engenharia/ciência de dados. A solução captura pacotes UDP do jogo a 60Hz, processa em tempo real usando Python, armazena de forma estruturada para gerar análises entre voltas a cada metro da corrida, após gerar uma base robusta, usamos para desenvolver um Machine Learning Copiloto com a responsabilidade de auxiliar durante a corrida com sugestões de estratégias, o que evoluiu para um projeto Text-to-Speak, com o Copiloto sintetizando sua voz para falar com o piloto via rádio, como o usuário se autentica pela Steam, seria possível a comunidade comparar voltas entre pilotos reais.",
-    pain: "A dor fica aqui",
+    desc: "Co-piloto virtual que captura telemetria em tempo real de simuladores como Automobilista 2.",
+    fullDescription: "Este projeto nasceu da necessidade de unir minha paixão por automobilismo virtual com engenharia de dados. A solução captura pacotes UDP do jogo a 60Hz, processa em tempo real usando Python, armazena de forma estruturada para gerar análises entre voltas a cada metro da corrida.",
+    pain: "A falta de feedback imediato impedia a evolução dos pilotos.",
     solution: "Arquitetura híbrida com processo Python de baixa latência, motor TTS Neural e Machine Learning.",
-    techs: ["Python", "Dash", "Plotly", "Flask", "SQLite", "Task Assync", "Shared Memory", "TTS Neural", "Machine Learning"],
+    techs: ["Python", "Dash", "Plotly", "Flask", "SQLite", "Task Assync", "Shared Memory", "TTS Neural"],
     architectureType: "desktop_app",
-    devNotes: "O maior desafio foi lidar com a latência (<200ms), otimizei o processo separando em tarefas assíncronas e orquestrando a frequência conforme a importância.",
-    learnings: "Aprendi profundamente sobre Shared Memory e processamento assíncrono (asyncio).",
+    
+    identity: {
+      themeColor: "#e74c3c",
+      bgGradient: "from-red-900/20 via-[#0d1117] to-[#0d1117]",
+    },
+
+    devNotes: "O maior desafio foi lidar com a latência (<200ms).",
+    learnings: "Aprendi profundamente sobre Shared Memory e processamento assíncrono.",
     images: [
-      { url: "img/mach1_001.png", caption: "Dashboard Principal" },
-      { url: "img/mach1_002.png", caption: "Análise de telemetria" },
-      { url: "img/mach1_003.png", caption: "Gráficos comparativos" }
-    ]
+      { type: "image", url: "img/mach1_001.png", caption: "Dashboard Principal" },
+      { type: "image", url: "img/mach1_002.png", caption: "Análise de telemetria" },
+      { type: "image", url: "img/mach1_003.png", caption: "Gráficos comparativos" }
+    ],
+    // ATENÇÃO: Código alinhado à esquerda para evitar erro de sintaxe
+    mermaidCode: `graph TD
+subgraph Simulador
+A[Assetto Corsa / AMS2] -->|UDP 60Hz| B(Python Listener)
+end
+subgraph Backend
+B --> C{Shared Memory}
+C -->|Leitura| D[FastAPI / Socket]
+C -->|Delta| E[AI Copilot]
+end
+subgraph Frontend
+D -->|JSON| F[React Dashboard]
+E -->|Audio| G[TTS Neural]
+G -->|Voz| H((Piloto))
+end
+classDef ai fill:#161b22,stroke:#e74c3c,stroke-width:2px;
+classDef std fill:#161b22,stroke:#30363d,stroke-width:1px;
+class E,G ai;
+class A,B,C,D,F,H std;`
   },
   {
     id: 2,
     title: "Power BI: Storytelling e Dataviz",
-    icon: <BarChart2 size={24} color={theme.func} />,
+    icon: <BarChart2 size={24} />,
     painPoint: "Extrair análises avançadas com visuais modernos.",
-    desc: "Este portfolio foi desenvolvido para explorar análises detalhadas com toda modernidade disponível, o objetivo principal é demonstrar que um velocímetro bonito não representa nada sem um storytelling adequado.",
-    fullDescription: "O projeto nasceu a partir de alguns cursos de Storytelling e Dataviz, focado em desenvolver visuais que sequer existiam na prateleira, para mostrar que é possível desenvolver análises detalhadas aplicando correlação, filtros cruzados, neste projeto conseguimos ver uma amostra de todos os detalhes que uma base de cliente pode oferecer, cruzando com a base de produtos.",
-    pain: "Desenvolver relatórios bonitos não melhoram o negócio sem o storytelling ou profundidade de conhecimento.",
-    solution: "Orquestrador ETL que carrega em Star Schema otimizado para leitura, e desenvolver novos visuais com HTML e SVG.",
+    desc: "Portfólio desenvolvido para explorar análises detalhadas com modernidade.",
+    fullDescription: "O projeto nasceu focado em desenvolver visuais que sequer existiam na prateleira, para mostrar que é possível desenvolver análises detalhadas aplicando correlação e filtros cruzados.",
+    pain: "Relatórios bonitos não melhoram o negócio sem profundidade de conhecimento.",
+    solution: "Orquestrador ETL que carrega em Star Schema otimizado e novos visuais com HTML e SVG.",
     techs: ["Power BI", "SQL Server", "DAX", "Power Query M", "HTML", "SVG"],
     architectureType: "etl_pipeline",
-    devNotes: "Modelagem dos dados melhorou a performance do relatório em 9x",
-    learnings: "Desenvolvimento de visuais com HTML e SVG abriu uma janela de oportunidades na minha mente.",
+
+    identity: {
+      themeColor: "#f1c40f",
+      bgGradient: "from-yellow-900/10 via-[#0d1117] to-[#0d1117]",
+    },
+
+    devNotes: "Modelagem dos dados melhorou a performance do relatório em 9x.",
+    learnings: "Desenvolvimento de visuais com HTML e SVG abriu uma janela de oportunidades.",
     images: [
-      { url: "img/pbi_001.png", caption: "Dashboard Principal" },
-      { url: "img/pbi_002.png", caption: "Analitico de Clientes" },
-      { url: "img/pbi_003.png", caption: "Analítico de Produtos" }
-    ]
+      { type: "image", url: "img/pbi_001.png", caption: "Dashboard Principal" },
+      { type: "image", url: "img/pbi_002.png", caption: "Analitico de Clientes" },
+      { type: "image", url: "img/pbi_003.png", caption: "Analítico de Produtos" }
+    ],
+    mermaidCode: `graph LR
+subgraph Fontes
+ERP[(SQL Server)]
+XLS[Metas Excel]
+end
+subgraph ETL
+ERP -->|M| P[Staging]
+XLS -->|M| P
+P -->|Transf| DW[(Data Warehouse)]
+DW -->|Star Schema| M[Modelo Tabular]
+end
+subgraph Viz
+M -->|DAX| KPI[Calculo KPIs]
+KPI -->|Render| V[HTML/SVG]
+KPI -->|Show| S[Dashboard]
+end
+classDef dw fill:#161b22,stroke:#f1c40f,stroke-width:2px;
+class DW,M,KPI dw;`
   },
   {
     id: 3,
     title: "Piloto AI: Rede Neural autônoma",
-    icon: <Cpu size={24} color={theme.keyword} />,
-    painPoint: "Projeto para desenvolvimento de uma rede neural capaz de tomar decisões em um carro através de sensores.",
-    desc: "Esse projeto nasceu para analisar o modelo de aprendizado de diversas redes neurais, onde que cada uma brilha e onde falha.",
-    fullDescription: "Criei esse projeto usando diversas bibliotecas e metodologias de redes neurais para estudar seu método de aprendizado, usando como referência a pista de interlagos, um carro autônomo com 5 sensores de aproximação, sensor de velocidade e simulação de física como gravidade e inércia, foi fascinante observar cada modelo aprendendo no seu tempo, com micro-ajustes em parâmetros notar grandes resultados e associar ao funcionamento de um cérebro humano.",
-    pain: "Como aprimorar o aprendizado de uma rede neural",
-    solution: "Um projeto com Redes Neurais, tempo e pasciência.",
-    techs: ["Python", "SciPy"],
+    icon: <Cpu size={24} />,
+    painPoint: "Desenvolver uma rede neural capaz de tomar decisões de pilotagem.",
+    desc: "Estudo sobre modelos de aprendizado de redes neurais.",
+    fullDescription: "Usei a pista de Interlagos como referência para treinar um carro autônomo com 5 sensores de aproximação, sensor de velocidade e física simulada.",
+    pain: "Como aprimorar o aprendizado de uma rede neural 'black box'?",
+    solution: "Um projeto com Redes Neurais, tempo, paciência e ajustes finos.",
+    techs: ["Python", "SciPy", "TensorFlow", "Pandas"],
     architectureType: "data_quality",
-    devNotes: "Calibração e teste dos sensores.",
+
+    identity: {
+      themeColor: "#8e44ad",
+      bgGradient: "from-purple-900/20 via-[#0d1117] to-[#0d1117]",
+    },
+
+    devNotes: "A calibração e teste dos sensores foi crítica.",
     learnings: "Observabilidade dos micro-ajustes no lugar certo na medida certa.",
     images: [
-      { url: "img/piloto_ai_001.png", caption: "Carro autônomo" },
-      { url: "img/piloto_ai_002.png", caption: "Sensores de colisão" },
-      { url: "img/piloto_ai_003.png", caption: "Curva" }
-    ]
+      { type: "image", url: "img/piloto_ai_001.png", caption: "Carro autônomo" },
+      { type: "image", url: "img/piloto_ai_002.png", caption: "Sensores de colisão" },
+      { type: "image", url: "img/piloto_ai_003.png", caption: "Curva" }
+    ],
+    mermaidCode: `graph TD
+subgraph Inputs
+S1(Distancia Frontal) --> NN
+S2(Distancia Lateral) --> NN
+S3(Velocidade) --> NN
+end
+subgraph BlackBox
+NN[Input Layer] --> H1[Hidden 1]
+H1 --> H2[Hidden 2]
+H2 --> OUT[Output]
+end
+subgraph Atuadores
+OUT -->|0.0-1.0| A1[Acelerador]
+OUT -->|-1.0-1.0| A2[Volante]
+OUT -->|0/1| A3[Freio]
+end
+A1 --> S3
+A2 --> S1
+classDef neural fill:#161b22,stroke:#8e44ad,stroke-width:2px;
+class NN,H1,H2,OUT neural;`
   },
   {
     id: 4,
     title: "DRS - Analytics",
-    icon: <BarChart2 size={24} color={theme.string} />,
-    painPoint: "Desenvolver o Dashboard perfeito: Python com o melhor dos mundos no backend e React com o melhor dos mundos no frontend.",
+    icon: <BarChart2 size={24} />,
+    painPoint: "O Dashboard perfeito: Backend Python robusto + Frontend React moderno.",
     desc: "Sistema de acompanhamento e gestão de indicadores ultra eficiente.",
-    fullDescription: "Criei esse projeto visando mesclar o melhor de dois mundos paralelos, o frontend e o backend, quando descobri que existe essa possibilidade, imediatamente comecei a desenvolver um protótipo de relatório que se tornou esse monstro robusto com análises completas, detalhadas e customizadas para cada tipo de visualização, perfil de usuário e permissão a nível de linha, com o Python orquestrando os dados, calculando os dados com Polars e servindo o React, esse sem dúvidas foi o projeto de relatório mais satisfatório até o momento.",
-    pain: "Como desenvolver visuais de primeira linha para exibir minhas anáises em Python.",
-    solution: "Arquitetura híbrida entre Python e React.",
-    techs: ["Python", "React", "FastAPI", "Polars", "Task Assync", "SQL Server", "Parquet", "Duckdb"],
+    fullDescription: "Este projeto visa mesclar o melhor de dois mundos: Python orquestrando e calculando dados (Polars) e React servindo a interface.",
+    pain: "Como exibir análises complexas do Python em uma interface web?",
+    solution: "Arquitetura híbrida entre Python (FastAPI/Polars) e React.",
+    techs: ["Python", "React", "FastAPI", "Polars", "Redis", "SQL Server"],
     architectureType: "data_quality",
-    devNotes: "Resultados incríveis com a potência do Python para processar e servir dados, enquanto o React lindo e elegante exibe os dados com os componentes mais avançados em Javascript.",
-    learnings: "Arquitetura e orquestração de dados para servir de forma eficiênte, o principal ponto é trabalhar com cache e servir o cliente com os dados mais recente possível sem repetir requisições desnecessárias no banco de dados.",
+
+    identity: {
+      themeColor: "#3498db",
+      bgGradient: "from-blue-900/20 via-[#0d1117] to-[#0d1117]",
+    },
+
+    devNotes: "Resultados incríveis combinando Polars e React.",
+    learnings: "Trabalhar com cache inteligente (Redis) para servir o dado mais recente.",
     images: [
-      { url: "img/drs_001.png", caption: "Dashboard Principal" },
-      { url: "img/drs_002.png", caption: "Análise de Faturamento" },
-      { url: "img/drs_003.png", caption: "Gestão de Carteira" }
-    ]
+      { type: "image", url: "img/drs_001.png", caption: "Dashboard Principal" },
+      { type: "image", url: "img/drs_002.png", caption: "Análise de Faturamento" },
+      { type: "image", url: "img/drs_003.png", caption: "Gestão de Carteira" }
+    ],
+    // CORREÇÃO AQUI: Aspas nos nomes compostos "User (React)" e "Polars Engine"
+    mermaidCode: `sequenceDiagram
+participant User as "User (React)"
+participant API as FastAPI
+participant Cache as Redis
+participant Engine as "Polars Engine"
+participant DB as SQL Server
+User->>API: GET /kpi
+API->>Cache: Check Key
+alt Cache Hit
+Cache-->>API: JSON (10ms)
+API-->>User: Render
+else Cache Miss
+API->>Engine: Process
+Engine->>DB: Select
+DB-->>Engine: Raw Data
+Engine->>Engine: GroupBy
+Engine-->>API: DataFrame
+API->>Cache: Save
+API-->>User: Render
+end`
   }
 ];
 
@@ -1704,6 +1922,7 @@ export const skillsData = [
 
 export const profileCode = (
   <>
+    <span style={{ color: theme.comment }}># v1.0.2</span>{'\n'}
     <span style={{ color: theme.keyword }}>import</span> pandas <span style={{ color: theme.keyword }}>as</span> pd{'\n'}
     <span style={{ color: theme.keyword }}>from</span> career <span style={{ color: theme.keyword }}>import</span> Experience{'\n\n'}
     
@@ -1722,15 +1941,99 @@ export const profileCode = (
     {'        '}<span style={{ color: theme.keyword }}>return</span> decisao <span style={{ color: theme.comment }}># Impacto no negócio</span>
   </>
 );
+
+export const experienceData = [
+  {
+    company: "Cielo",
+    role: "Cientista de Dados Sênior",
+    period: "39 meses",
+    tech: ["Python", "SQL", "Azure", "Power BI", "AWS Athena", "Databricks"],
+    // Estrutura em blocos para permitir formatação rica
+    content: [
+      { 
+        type: "paragraph", 
+        text: "Na Cielo, atuei na equipe de Ciência de Dados aplicada ao Atendimento, sendo responsável pelo desenvolvimento e monitoramento de indicadores críticos para executivos e conselheiros." 
+      },
+      { 
+        type: "header", 
+        text: "📊 Desenvolvimento e Otimização de Relatórios:" 
+      },
+      { 
+        type: "list", 
+        items: [
+          "Criação e implementação de +30 dashboards analíticos em Power BI, aplicando técnicas avançadas de DAX e Power Query para otimização de performance.",
+          "Monitoramento e gestão do Power BI Service, garantindo alta disponibilidade e acessibilidade dos relatórios, mesmo sob alto volume de publicações.",
+          "Governança de dados no Datalake, lidando com +35 milhões de registros diários, assegurando qualidade e integridade dos dados por meio de scripts automatizados em Python."
+        ]
+      },
+      { 
+        type: "header", 
+        text: "📂 Gestão e Monitoramento de Dados:" 
+      },
+      { 
+        type: "list", 
+        items: [
+          "Construção de indicadores críticos utilizando SQL Server, Oracle DB, Impala Datalake e AWS Athena, estruturando processos de ETL eficientes.",
+          "Desenvolvimento de ferramentas personalizadas em Python para padronização e integração de dados no AWS Athena, otimizando a conexão com o Power BI.",
+          "Implementação de ferramentas de monitoramento de qualidade de dados (Z-Score para volumetria e validação textual/numérica)."
+        ]
+      }
+    ]
+  },
+  {
+    company: "Goop",
+    role: "Analista Pleno | PO",
+    period: "56 meses",
+    tech: ["ETL", "Power BI", "SQL", "Modelagem de Dados"],
+    content: [
+      { 
+        type: "paragraph", 
+        text: "Atuei na estruturação da área de dados do zero, transformando processos manuais em pipelines de inteligência." 
+      },
+      { 
+        type: "header", 
+        text: "🚀 Principais Entregas:" 
+      },
+      { 
+        type: "list", 
+        items: [
+          "Mapeamento de processos e definição de KPIs estratégicos junto à diretoria.",
+          "Implementação do primeiro Data Warehouse da empresa, centralizando dados dispersos.",
+          "Automação de cargas de dados reduzindo o tempo de fechamento mensal em 70%."
+        ]
+      }
+    ]
+  },
+  {
+    company: "Atento",
+    role: "Analista de Dados",
+    period: "54 meses",
+    tech: ["Excel", "VBA", "Access", "Automação"],
+    content: [
+      { 
+        type: "paragraph", 
+        text: "Foco em automação de relatórios operacionais e desenvolvimento de ferramentas para aumento de produtividade." 
+      },
+      { 
+        type: "list", 
+        items: [
+          "Desenvolvimento de macros complexas em VBA para consolidação de planilhas.",
+          "Criação de dashboards operacionais em Excel para acompanhamento de filas de atendimento.",
+          "Redução de erros manuais através de validações automatizadas de input de dados."
+        ]
+      }
+    ]
+  }
+];
 ```
 
-# ARQUIVO: ./src/pages/Home.jsx
+# ARQUIVO: .\src\pages\Home.jsx
 ```javascript
 import React from 'react';
 import { Linkedin, Github, ExternalLink, GitBranch, BarChart2, Layers } from 'lucide-react';
 import { theme } from '../constants/theme';
 // Adicionamos o profileCode na importação
-import { personalInfo, projectsData, profileCode } from '../data/mockData';
+import { personalInfo, projectsData, profileCode, experienceData } from '../data/mockData';
 import ProjectRow from '../components/sections/ProjectRow';
 import SkillRadarChart from '../components/charts/SkillRadarChart';
 import ImpactChart from '../components/charts/ImpactChart';
@@ -1764,7 +2067,7 @@ const Home = ({ setSelectedProject }) => {
                 <div className="grid grid-cols-[auto,1fr] gap-4">
                   {/* Linhas numeradas */}
                   <div className="flex flex-col text-right select-none opacity-30" style={{ color: theme.secondaryText }}>
-                    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14].map(n => <span key={n}>{n}</span>)}
+                    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(n => <span key={n}>{n}</span>)}
                   </div>
                   {/* O código vem do mockData agora */}
                   <pre style={{ color: theme.text }}>
@@ -1801,22 +2104,70 @@ const Home = ({ setSelectedProject }) => {
         </div>
       </section>
 
-      {/* Experience */}
+      {/* Experience Section */}
       <section id="experiencia" className="py-20 border-t" style={{ borderColor: theme.border }}>
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-12 flex items-center gap-3"><span style={{ color: theme.keyword }}>SELECT * FROM</span> experience</h2>
-          <div className="space-y-8">
-            {[
-              { c: "Cielo", r: "Cientista de Dados Sênior", t: "3 anos", d: "Governança de Datalake e modelos preditivos.", tech: ["Python", "SQL", "Azure"] },
-              { c: "Goop", r: "Analista Pleno | PO", t: "4 anos", d: "Estruturação da área de dados do zero.", tech: ["ETL", "Power BI"] },
-              { c: "Atento", r: "Analista de Dados", t: "4 anos", d: "Automação de relatórios e VBA.", tech: ["Excel", "VBA"] }
-            ].map((e, i) => (
+          <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
+            <span style={{ color: theme.keyword }}>SELECT * FROM</span> experience
+          </h2>
+          
+          <div className="space-y-12"> {/* Aumentei o espaçamento entre empresas */}
+            {experienceData.map((e, i) => (
               <div key={i} className="group relative pl-8 border-l-2" style={{ borderColor: theme.border }}>
-                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full border-4 bg-[#27ae60] border-[#0d1117]"></div>
-                <div className="p-6 rounded-lg border bg-[#161b22] border-[#30363d] hover:border-opacity-100">
-                  <div className="flex justify-between mb-2"><h3 className="text-xl font-bold text-white">{e.r}</h3><span className="text-sm text-slate-500">@ {e.c}</span></div>
-                  <p className="text-slate-400 mb-4">{e.d}</p>
-                  <div className="flex gap-2">{e.tech.map((t, j) => <span key={j} className="text-xs px-2 py-1 rounded bg-[#0d1117] border border-[#30363d] text-[#79c0ff]">{t}</span>)}</div>
+                {/* Bolinha da Timeline */}
+                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full border-4 transition-all group-hover:scale-125" 
+                     style={{ backgroundColor: theme.func, borderColor: theme.bg }}></div>
+                
+                {/* Card da Experiência */}
+                <div className="p-6 rounded-lg border bg-[#161b22] border-[#30363d] hover:border-opacity-100 transition-all">
+                  
+                  {/* Cabeçalho do Card */}
+                  <div className="flex flex-col md:flex-row justify-between mb-4 md:items-center">
+                    <div>
+                      <h3 className="text-xl font-bold text-white">{e.role}</h3>
+                      <span className="text-sm font-mono" style={{ color: theme.variable }}>@ {e.company}</span>
+                    </div>
+                    <span className="text-xs font-mono px-2 py-1 rounded border mt-2 md:mt-0 w-fit" 
+                          style={{ backgroundColor: theme.bg, borderColor: theme.border, color: theme.secondaryText }}>
+                      {e.period}
+                    </span>
+                  </div>
+
+                  {/* Renderização do Conteúdo Rico */}
+                  <div className="text-slate-400 mb-6 text-sm leading-relaxed space-y-3">
+                    {e.content.map((block, idx) => {
+                      if (block.type === 'paragraph') {
+                        return <p key={idx}>{block.text}</p>;
+                      }
+                      if (block.type === 'header') {
+                        return <h4 key={idx} className="font-bold mt-4 mb-2 text-slate-200">{block.text}</h4>;
+                      }
+                      if (block.type === 'list') {
+                        return (
+                          <ul key={idx} className="space-y-2 ml-1">
+                            {block.items.map((item, itemIdx) => (
+                              <li key={itemIdx} className="flex gap-2">
+                                <span style={{ color: theme.func }}>✔</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2 pt-4 border-t border-[#30363d]">
+                    {e.tech.map((t, j) => (
+                      <span key={j} className="text-xs px-2 py-1 rounded font-mono border" 
+                            style={{ backgroundColor: theme.bg, borderColor: theme.border, color: theme.keyword }}>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
                 </div>
               </div>
             ))}
@@ -1845,52 +2196,64 @@ const Home = ({ setSelectedProject }) => {
 export default Home;
 ```
 
-# ARQUIVO: ./src/pages/ProjectDetails.jsx
+# ARQUIVO: .\src\pages\ProjectDetails.jsx
 ```javascript
 import React, { useEffect } from 'react';
 import { ArrowLeft, Lightbulb, CheckCircle2, Code, BookOpen } from 'lucide-react';
-import ArchitectureDiagram from '../components/charts/ArchitectureDiagram';
+import MermaidDiagram from '../components/charts/MermaidDiagram'; 
 import LandingSection from '../components/sections/LandingSection';
+import ProjectGallery from '../components/sections/ProjectGallery'; // Importando a Galeria
 
 const ProjectDetails = ({ project, onBack }) => {
-  useEffect(() => {
-    window.scrollTo(0, 0); // Rola para o topo ao abrir
-  }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  const { themeColor = "#27ae60", bgGradient = "from-[#0d1117] to-[#0d1117]" } = project.identity || {};
+
+  // CORREÇÃO: Função para buscar apenas imagens seguras para layout estático
+  // Se o item no índice original for video, ele procura a próxima imagem disponível
+  const safeImages = project.images.filter(img => !img.type || img.type === 'image');
+  
+  const getImage = (index) => {
+    return safeImages[index]?.url || ""; // Retorna string vazia se não existir
+  };
 
   return (
-    <div className="min-h-screen bg-[#0d1117] text-[#c9d1d9] animate-in fade-in duration-500">
+    <div className="min-h-screen bg-[#0d1117] text-[#c9d1d9]">
       
-      {/* Navbar Minimalista */}
-      <nav className="fixed w-full z-50 bg-[#0d1117]/80 backdrop-blur border-b border-[#30363d] py-4 px-6 flex justify-between items-center">
-        <button onClick={onBack} className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-          <ArrowLeft size={20} /> Voltar ao Portfólio
+      {/* ... Navbar (igual) ... */}
+      <nav className="fixed w-full z-50 bg-[#0d1117]/90 backdrop-blur border-b border-[#30363d] py-4 px-6 flex justify-between">
+        <button onClick={onBack} className="flex items-center gap-2 hover:text-white transition-colors">
+          <ArrowLeft size={20} /> Voltar
         </button>
-        <span className="font-mono font-bold text-[#79c0ff]">{project.title}.py</span>
+        <span className="font-mono font-bold" style={{ color: themeColor }}>{project.title}.py</span>
       </nav>
 
-      {/* Hero do Projeto */}
-      <header className="relative w-full h-[80vh] flex items-center justify-center overflow-hidden">
-        <img src={project.images[0].url} className="absolute inset-0 w-full h-full object-cover opacity-40" alt="Hero" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117] via-[#0d1117]/50 to-transparent" />
+      {/* Hero Section */}
+      <header className={`relative w-full h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-b ${bgGradient}`}>
+        {/* CORREÇÃO: Usando getImage(0) em vez de project.images[0].url */}
+        {getImage(0) && (
+          <img src={getImage(0)} className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay" alt="hero" />
+        )}
+        
         <div className="relative z-10 text-center px-4 max-w-4xl">
-          <div className="inline-flex items-center justify-center p-4 bg-[#161b22] rounded-full mb-6 shadow-2xl border border-[#30363d]">
-            {project.icon}
+          <div className="inline-flex p-4 bg-[#161b22] rounded-full mb-6 border border-[#30363d] shadow-2xl" 
+               style={{ boxShadow: `0 0 30px ${themeColor}30` }}>
+             {React.cloneElement(project.icon, { color: themeColor, size: 48 })}
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">{project.title}</h1>
-          <p className="text-xl md:text-2xl text-slate-300 font-light">{project.desc}</p>
         </div>
       </header>
 
-      {/* Conteúdo Landing Page */}
       <main className="pb-24">
-        <LandingSection image={project.images[0].url} title="O Contexto" text={project.fullDescription} align="left" />
-        <LandingSection image={project.images[1].url} title={project.painPoint} text={project.pain} align="right" isPainPoint={true} />
+        {/* CORREÇÃO: Usando getImage(0) e getImage(1) */}
+        <LandingSection image={getImage(0)} title="O Contexto" text={project.fullDescription} align="left" />
+        <LandingSection image={getImage(1)} title={project.painPoint} text={project.pain} align="right" isPainPoint={true} />
 
         {/* Solução */}
         <div className="py-24 bg-[#0d1117] relative">
           <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="flex items-center gap-2 text-emerald-400 mb-4 font-mono uppercase tracking-widest text-sm">
+              <div className="flex items-center gap-2 mb-4 font-mono uppercase tracking-widest text-sm" style={{ color: themeColor }}>
                 <Lightbulb size={16} /> A Solução
               </div>
               <h3 className="text-4xl font-bold text-white mb-6">Engenharia Inteligente</h3>
@@ -1905,8 +2268,13 @@ const ProjectDetails = ({ project, onBack }) => {
                  ))}
               </div>
             </div>
+            {/* CORREÇÃO: Usando getImage(2) */}
             <div className="relative rounded-2xl overflow-hidden border border-[#30363d] shadow-2xl group">
-              <img src={project.images[2].url} className="w-full h-full object-cover" alt="Solução" />
+              {getImage(2) ? (
+                 <img src={getImage(2)} className="w-full h-full object-cover" alt="Solution" />
+              ) : (
+                 <div className="w-full h-64 bg-[#161b22] flex items-center justify-center">Imagem indisponível</div>
+              )}
             </div>
           </div>
         </div>
@@ -1914,12 +2282,20 @@ const ProjectDetails = ({ project, onBack }) => {
         {/* Arquitetura */}
         <div className="py-24 bg-[#0d1117] border-t border-[#30363d]">
           <div className="container mx-auto px-6">
-            <ArchitectureDiagram type={project.architectureType} />
+            <h2 className="text-3xl font-bold text-white mb-8 text-center">
+              Fluxo da Aplicação
+              <span className="block text-sm font-normal text-slate-500 mt-2 font-mono">Renderizado via Mermaid.js</span>
+            </h2>
+            {project.mermaidCode ? (
+               <MermaidDiagram chartCode={project.mermaidCode} />
+            ) : (
+               <p className="text-center text-slate-500">Diagrama não disponível.</p>
+            )}
           </div>
         </div>
-
-        {/* Dev Notes */}
-        <div className="py-24 bg-[#161b22] border-t border-[#30363d]">
+        
+        {/* Dev Notes (igual) ... */}
+         <div className="py-24 bg-[#161b22] border-t border-[#30363d]">
           <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12">
             <div>
               <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
@@ -1939,6 +2315,18 @@ const ProjectDetails = ({ project, onBack }) => {
             </div>
           </div>
         </div>
+
+        {/* A Galeria é o ÚNICO lugar que sabe lidar com vídeos */}
+        <div className="bg-[#0d1117] pb-12 border-t border-[#30363d]">
+          <div className="container mx-auto px-6">
+             <h2 className="text-2xl font-bold text-white mb-6 mt-12 flex items-center gap-2">
+               <span style={{ color: themeColor }}>./output_logs</span>
+               <span className="text-slate-500 text-sm font-normal"> (Galeria Visual)</span>
+             </h2>
+             <ProjectGallery mediaItems={project.images} />
+          </div>
+        </div>
+
       </main>
       
       <footer className="py-12 text-center border-t border-[#30363d]">

@@ -1,5 +1,4 @@
 # --- Dependências (Node) ---
-node_modules/
 .pnp
 .pnp.js
 
@@ -46,3 +45,5 @@ pack_project.py
 
 # --- Vite ---
 *.tsbuildinfo
+node_modules
+dist
