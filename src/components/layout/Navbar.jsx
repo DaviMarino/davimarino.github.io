@@ -21,6 +21,28 @@ const Navbar = ({ scrollToSection, isScrolled }) => {
             </a>
           </div>
         </div>
+
+        <div className="md:hidden mt-3 px-4">
+          <div className="flex gap-2 overflow-x-auto pb-1 text-xs font-medium">
+            {['Sobre', 'Experiência', 'Projetos', 'Contato'].map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollToSection(item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))}
+                className="whitespace-nowrap px-3 py-2 rounded-md border transition-colors hover:text-white"
+                style={{ color: theme.secondaryText, borderColor: theme.border, backgroundColor: '#161b22' }}
+              >
+                <span style={{ color: theme.keyword }}>#</span>{item}
+              </button>
+            ))}
+            <a
+              href="#/f1-english"
+              className="whitespace-nowrap px-3 py-2 rounded-md border transition-colors hover:text-white"
+              style={{ color: theme.func, borderColor: theme.func, backgroundColor: '#161b22' }}
+            >
+              <span style={{ color: theme.keyword }}>#</span>F1 English
+            </a>
+          </div>
+        </div>
       </nav>
   );
 };
