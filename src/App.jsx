@@ -7,10 +7,14 @@ import { personalInfo } from './data/mockData';
 import Navbar from './components/layout/Navbar';
 import Home from './pages/Home';
 import ProjectDetails from './pages/ProjectDetails';
+import F1EnglishTracker from './pages/F1EnglishTracker';
+
+const F1_HASH_ROUTE = '#/f1-english';
 
 const App = () => {
   const [, setActiveSection] = useState('home');
   const [selectedProject, setSelectedProject] = useState(null); // SPA Routing state
+  const [isF1Route, setIsF1Route] = useState(window.location.hash === F1_HASH_ROUTE);
   const [isScrolled, setIsScrolled] = useState(false);
 
   // Efeito de scroll na Navbar
@@ -18,6 +22,19 @@ const App = () => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const syncRoute = () => {
+      setIsF1Route(window.location.hash === F1_HASH_ROUTE);
+    };
+
+    window.addEventListener('hashchange', syncRoute);
+    syncRoute();
+
+    return () => {
+      window.removeEventListener('hashchange', syncRoute);
+    };
   }, []);
 
   // Função de Navegação
@@ -44,6 +61,10 @@ const App = () => {
         onBack={() => setSelectedProject(null)} 
       />
     );
+  }
+
+  if (isF1Route) {
+    return <F1EnglishTracker onBack={() => { window.location.hash = ''; }} />;
   }
 
   return (

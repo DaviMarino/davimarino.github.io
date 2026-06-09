@@ -16,6 +16,9 @@ const Navbar = ({ scrollToSection, isScrolled }) => {
                 <span style={{ color: theme.keyword }}>#</span>{item}
               </button>
             ))}
+            <a href="#/f1-english" className="hover:text-white transition-colors" style={{ color: theme.func }}>
+              <span style={{ color: theme.keyword }}>#</span>F1 English
+            </a>
           </div>
         </div>
       </nav>
