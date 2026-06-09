@@ -63,14 +63,6 @@ const Home = ({ setSelectedProject }) => {
                     <GithubCard username="DaviMarino" />
                 </div>
             </div>
-
-            <a
-              href="#/f1-english"
-              className="mt-6 inline-flex items-center gap-2 px-4 py-3 rounded-md border transition-all hover:brightness-110"
-              style={{ borderColor: theme.func, color: theme.func, backgroundColor: '#0d1117' }}
-            >
-              Abrir F1 English Tracker
-            </a>
             {/* ----------------------------- */}
 
           </div>

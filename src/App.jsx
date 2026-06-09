@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Mail } from 'lucide-react';
+import { Mail, Flag } from 'lucide-react';
 import { theme } from './constants/theme';
 import { personalInfo } from './data/mockData';
 
@@ -82,6 +82,17 @@ const App = () => {
                 <Mail size={18} color={theme.func} /><span>{personalInfo.email}</span>
             </a>
           </div>
+
+          <div className="mb-8">
+            <a
+              href="#/f1-english"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-semibold border transition-all hover:translate-y-[-1px]"
+              style={{ borderColor: theme.func, color: '#ffffff', background: 'linear-gradient(135deg, #1e3a8a 0%, #0ea5e9 100%)' }}
+            >
+              <Flag size={16} /> Abrir F1 English Tracker
+            </a>
+          </div>
+
           <p className="text-xs" style={{ color: theme.secondaryText }}>© 2026 {personalInfo.name}. Built with React & <span style={{ color: theme.number }}>GitHub Dark Theme</span>.</p>
         </div>
       </footer>
