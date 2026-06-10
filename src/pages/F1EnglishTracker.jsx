@@ -27,11 +27,24 @@ const MODES = {
   GRID: 'grid_walk'
 };
 
+const shuffle = (arr) => {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+};
+
 const F1EnglishTracker = ({ onBack }) => {
   const [activeMode, setActiveMode] = useState(null);
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState({ xp_total: 0, streak_atual: 0, ultima_data_estudo: null });
   const [srsRows, setSrsRows] = useState([]);
+
+  const [shuffledPitItems] = useState(() => shuffle(pitRadioItems));
+  const [shuffledGridItems] = useState(() => shuffle(gridWalkItems));
+  const [shuffledTranslations] = useState(() => shuffle(translations));
 
   const [pitIndex, setPitIndex] = useState(0);
   const [pitChoice, setPitChoice] = useState(null);
@@ -68,12 +81,12 @@ const F1EnglishTracker = ({ onBack }) => {
 
   const dueCards = useMemo(() => {
     const dueIds = new Set(getDueTranslationIds(srsRows));
-    const due = translations.filter((item) => dueIds.has(item.id));
-    return due.length > 0 ? due : translations;
-  }, [srsRows]);
+    const due = shuffledTranslations.filter((item) => dueIds.has(item.id));
+    return due.length > 0 ? due : shuffledTranslations;
+  }, [srsRows, shuffledTranslations]);
 
-  const currentPit = pitRadioItems[pitIndex];
-  const currentGrid = gridWalkItems[gridIndex];
+  const currentPit = shuffledPitItems[pitIndex];
+  const currentGrid = shuffledGridItems[gridIndex];
   const currentDrs = dueCards[drsIndex % dueCards.length];
 
   const enterMode = (mode) => {
@@ -106,7 +119,7 @@ const F1EnglishTracker = ({ onBack }) => {
     if ('speechSynthesis' in window) {
       const utterance = new SpeechSynthesisUtterance(currentPit.textEn);
       utterance.lang = 'en-US';
-      utterance.rate = 0.95;
+      utterance.rate = 0.78;
       window.speechSynthesis.cancel();
       window.speechSynthesis.speak(utterance);
     }
@@ -125,7 +138,13 @@ const F1EnglishTracker = ({ onBack }) => {
   const nextPit = () => {
     setPitChoice(null);
     setPitResult(null);
-    setPitIndex((prev) => (prev + 1) % pitRadioItems.length);
+    setPitIndex((prev) => (prev + 1) % shuffledPitItems.length);
+  };
+
+  const prevPit = () => {
+    setPitChoice(null);
+    setPitResult(null);
+    setPitIndex((prev) => (prev - 1 + shuffledPitItems.length) % shuffledPitItems.length);
   };
 
   const submitGrid = async () => {
@@ -141,7 +160,13 @@ const F1EnglishTracker = ({ onBack }) => {
   const nextGrid = () => {
     setGridChoice(null);
     setGridResult(null);
-    setGridIndex((prev) => (prev + 1) % gridWalkItems.length);
+    setGridIndex((prev) => (prev + 1) % shuffledGridItems.length);
+  };
+
+  const prevGrid = () => {
+    setGridChoice(null);
+    setGridResult(null);
+    setGridIndex((prev) => (prev - 1 + shuffledGridItems.length) % shuffledGridItems.length);
   };
 
   const rateDrs = async (acertou) => {
@@ -155,7 +180,18 @@ const F1EnglishTracker = ({ onBack }) => {
 
     setDrsReveal(false);
     setDrsHintsUnlocked(0);
+  };
+
+  const nextDrs = () => {
+    setDrsReveal(false);
+    setDrsHintsUnlocked(0);
     setDrsIndex((prev) => (prev + 1) % dueCards.length);
+  };
+
+  const prevDrs = () => {
+    setDrsReveal(false);
+    setDrsHintsUnlocked(0);
+    setDrsIndex((prev) => (prev - 1 + dueCards.length) % dueCards.length);
   };
 
   const unlockDrsHint = () => {
@@ -305,9 +341,10 @@ const F1EnglishTracker = ({ onBack }) => {
               ))}
             </div>
 
-            <div className="mt-5 flex items-center gap-3">
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <button onClick={prevPit} className="px-4 py-2 rounded-md border border-slate-700 text-sm hover:bg-slate-800">Voltar</button>
               <button onClick={submitPit} className="px-4 py-2 rounded-md bg-white text-black text-sm font-medium">Confirmar</button>
-              <button onClick={nextPit} className="px-4 py-2 rounded-md border border-slate-700 text-sm">Proxima</button>
+              <button onClick={nextPit} className="px-4 py-2 rounded-md border border-slate-700 text-sm hover:bg-slate-800">Proximo</button>
               {pitResult !== null && (
                 <span className="text-sm flex items-center gap-1">
                   {pitResult ? <CircleCheck size={16} className="text-emerald-400" /> : <CircleX size={16} className="text-rose-400" />}
@@ -362,11 +399,16 @@ const F1EnglishTracker = ({ onBack }) => {
             </div>
 
             {drsReveal && (
-              <div className="flex gap-3">
-                <button onClick={() => rateDrs(false)} className="px-4 py-2 rounded-md border border-rose-500 text-rose-300">Errei</button>
-                <button onClick={() => rateDrs(true)} className="px-4 py-2 rounded-md border border-emerald-500 text-emerald-300">Acertei</button>
+              <div className="flex flex-wrap gap-3">
+                <button onClick={() => rateDrs(false)} className="px-4 py-2 rounded-md border border-rose-500 text-rose-300 hover:bg-rose-500/10">Errei</button>
+                <button onClick={() => rateDrs(true)} className="px-4 py-2 rounded-md border border-emerald-500 text-emerald-300 hover:bg-emerald-500/10">Acertei</button>
               </div>
             )}
+
+            <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-slate-800 pt-4">
+              <button onClick={prevDrs} className="px-4 py-2 rounded-md border border-slate-700 text-sm hover:bg-slate-800">Voltar</button>
+              <button onClick={nextDrs} className="px-4 py-2 rounded-md border border-slate-700 text-sm hover:bg-slate-800">Proximo</button>
+            </div>
           </section>
         )}
 
@@ -389,9 +431,10 @@ const F1EnglishTracker = ({ onBack }) => {
               ))}
             </div>
 
-            <div className="mt-5 flex items-center gap-3">
+            <div className="mt-5 flex flex-wrap items-center gap-3">
+              <button onClick={prevGrid} className="px-4 py-2 rounded-md border border-slate-700 text-sm hover:bg-slate-800">Voltar</button>
               <button onClick={submitGrid} className="px-4 py-2 rounded-md bg-white text-black text-sm font-medium">Confirmar</button>
-              <button onClick={nextGrid} className="px-4 py-2 rounded-md border border-slate-700 text-sm">Proxima</button>
+              <button onClick={nextGrid} className="px-4 py-2 rounded-md border border-slate-700 text-sm hover:bg-slate-800">Proximo</button>
               {gridResult !== null && (
                 <span className="text-sm flex items-center gap-1">
                   {gridResult ? <CircleCheck size={16} className="text-emerald-400" /> : <CircleX size={16} className="text-rose-400" />}
