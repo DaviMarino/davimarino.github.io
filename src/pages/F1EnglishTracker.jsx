@@ -119,7 +119,7 @@ const F1EnglishTracker = ({ onBack }) => {
     if ('speechSynthesis' in window) {
       const utterance = new SpeechSynthesisUtterance(currentPit.textEn);
       utterance.lang = 'en-US';
-      utterance.rate = 0.78;
+      utterance.rate = 0.70;
       window.speechSynthesis.cancel();
       window.speechSynthesis.speak(utterance);
     }

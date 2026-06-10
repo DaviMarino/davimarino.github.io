@@ -34,6 +34,150 @@ export const pitRadioItems = [
       "Track is fully dry forever"
     ],
     correctIndex: 1
+  },
+  {
+    id: "pit-4",
+    textEn: "And it's lights out and away we go! Charles Leclerc gets a brilliant start and overtakes Verstappen into turn one.",
+    question: "What happened at the start of the race?",
+    alternatives: [
+      "Verstappen kept the lead easily",
+      "Leclerc had a poor start and lost positions",
+      "Leclerc got a great start and passed Verstappen",
+      "The race was red flagged immediately"
+    ],
+    correctIndex: 2
+  },
+  {
+    id: "pit-5",
+    textEn: "Hamilton is closing in on Norris, just under one second behind now with DRS available on the next straight.",
+    question: "What is the current situation on track?",
+    alternatives: [
+      "Hamilton is pulling away from Norris",
+      "Norris is about to lap Hamilton",
+      "Hamilton is catching Norris and may use DRS",
+      "Both drivers are pitting this lap"
+    ],
+    correctIndex: 2
+  },
+  {
+    id: "pit-6",
+    textEn: "The safety car is out after a heavy crash at turn six. Both drivers are out of the car and appear to be okay.",
+    question: "Why is the safety car deployed?",
+    alternatives: [
+      "Debris on the main straight",
+      "A heavy crash at turn six, drivers are safe",
+      "Rain has started falling heavily",
+      "A driver reported a mechanical issue"
+    ],
+    correctIndex: 1
+  },
+  {
+    id: "pit-7",
+    textEn: "Verstappen pits from the lead for soft tyres. That is a bold strategy call by Red Bull with twenty laps to go.",
+    question: "What did Red Bull decide to do?",
+    alternatives: [
+      "Keep Verstappen out on old tyres",
+      "Box Verstappen for soft tyres with 20 laps left",
+      "Switch Verstappen to hard tyres for the end",
+      "Retire the car due to engine issues"
+    ],
+    correctIndex: 1
+  },
+  {
+    id: "pit-8",
+    textEn: "The top three are covered by just two seconds. This is shaping up to be a absolute thriller of a finish.",
+    question: "How close is the race at the front?",
+    alternatives: [
+      "The leader is ten seconds ahead",
+      "The top three are within two seconds, very tight",
+      "The cars are spread out with no battles",
+      "Only two cars remain on the lead lap"
+    ],
+    correctIndex: 1
+  },
+  {
+    id: "pit-9",
+    textEn: "Sainz is defending brilliantly but you can see his rear tyres are starting to grain. He might not hold on much longer.",
+    question: "What problem is Sainz experiencing?",
+    alternatives: [
+      "Engine overheating issues",
+      "Rear tyres are graining, he may lose position soon",
+      "He damaged his front wing in a collision",
+      "He is being told to let his teammate pass"
+    ],
+    correctIndex: 1
+  },
+  {
+    id: "pit-10",
+    textEn: "That was a textbook overtake from Piastri around the outside of turn four. Clean racing at its finest.",
+    question: "How would you describe Piastri's overtake?",
+    alternatives: [
+      "He made contact and forced the other car off",
+      "He overtook using the pit lane entrance",
+      "It was a clean, textbook overtake around the outside",
+      "He benefited from a penalty to the other driver"
+    ],
+    correctIndex: 2
+  },
+  {
+    id: "pit-11",
+    textEn: "Alonso is on a monster drive. He has gained eight positions since lap ten and is now closing in on the podium places.",
+    question: "How is Alonso performing in the race?",
+    alternatives: [
+      "He is struggling with car balance",
+      "He lost several positions after a slow pit stop",
+      "He gained eight positions and is fighting for the podium",
+      "He retired from the race with mechanical failure"
+    ],
+    correctIndex: 2
+  },
+  {
+    id: "pit-12",
+    textEn: "We are going into a standing restart with five laps remaining. This could shake up the entire order.",
+    question: "What is about to happen in the race?",
+    alternatives: [
+      "The race is ending under safety car",
+      "A standing restart with five laps to go",
+      "Drivers are coming in for wet tyres",
+      "The race has been red flagged permanently"
+    ],
+    correctIndex: 1
+  },
+  {
+    id: "pit-13",
+    textEn: "Russell is told to hold position, but he is clearly faster than his teammate. Team orders are in play here.",
+    question: "What instruction did Russell receive?",
+    alternatives: [
+      "He was told to push for fastest lap",
+      "He was told to hold position despite being faster",
+      "He was told to pit for intermediate tyres",
+      "He was told to let the leader through"
+    ],
+    correctIndex: 1
+  },
+  {
+    id: "pit-14",
+    textEn: "The race leader is struggling with graining on the front left. The team is asking him to change his driving line to manage it.",
+    question: "What is the leader struggling with?",
+    alternatives: [
+      "A broken steering wheel",
+      "Front left graining, team suggests changing the line",
+      "Low fuel pressure in the final stint",
+      "A penalty for exceeding track limits"
+    ],
+    correctIndex: 1
+  },
+  {
+    id: "pit-15",
+    textEn: "And the chequered flag is waved. What a race! After sixty-five laps, it is Lewis Hamilton who takes the victory.",
+    question: "How did the race end?",
+    alternatives: [
+      "The race was stopped due to rain before the end",
+      "Hamilton won after sixty-five laps",
+      "A penalty changed the winner after the race",
+      "The top three finished within half a second"
+    ],
+    correctIndex: 1
   }
 ];
 
