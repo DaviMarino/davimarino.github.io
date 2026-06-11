@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Preview F1 Car</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #05070d;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 48px;
+      font-family: sans-serif;
+    }
+    .label {
+      color: #475569;
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .box {
+      background: #0b1220;
+      padding: 40px 60px;
+      border-radius: 20px;
+      border: 1px solid #1e293b;
+    }
+
+    /* ─── Tela do preloader ─── */
+    .box-screen {
+      width: 600px;
+      height: 220px;
+      background: #05070d;
+      border: 1px solid #1e293b;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .track-line {
+      position: absolute;
+      bottom: 42%;
+      left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #1e293b 15%, #1e293b 85%, transparent);
+    }
+    .track-dashes {
+      position: absolute;
+      bottom: calc(42% - 12px);
+      left: 0; right: 0;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, #334155 0px, #334155 20px, transparent 20px, transparent 40px);
+    }
+
+    /* ─── Animação do carro: dois wrappers ─── */
+
+    /* OUTER: só translateX */
+    .car-outer {
+      position: absolute;
+      bottom: calc(42% - 48px);
+      width: 340px;
+      height: 120px;
+      animation: f1CarX 3s linear infinite;
+    }
+
+    /* INNER: só rotate (pitch), pivô = contato da roda traseira */
+    /* roda traseira após flip: visual cx=98px → 98/340=29%; bottom=112px → 112/120=93% */
+    .car-inner {
+      width: 340px;
+      height: 120px;
+      transform-origin: 29% 93%;
+      animation: f1CarPitch 3s linear infinite;
+    }
+
+    @keyframes f1CarX {
+      0% {
+        transform: translateX(calc(-50vw - 200px));
+        animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      45% {
+        transform: translateX(0px);
+      }
+      65% {
+        transform: translateX(0px);
+        animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+      }
+      100% {
+        transform: translateX(calc(50vw + 200px));
+      }
+    }
+
+    @keyframes f1CarPitch {
+      0%  { transform: rotate(0deg); }
+      18% {
+        transform: rotate(1deg);
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      40% {
+        transform: rotate(3deg);
+        animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      50% {
+        transform: rotate(0deg);
+      }
+      65% {
+        transform: rotate(0deg);
+        animation-timing-function: ease-out;
+      }
+      73% {
+        transform: rotate(-2deg);
+        animation-timing-function: ease-in-out;
+      }
+      83% {
+        transform: rotate(0deg);
+      }
+      100%{ transform: rotate(0deg); }
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- SVG estático -->
+  <div>
+    <p class="label">SVG estático — frente para a direita, rodas visíveis</p>
+    <div class="box">
+      <img src="f1-car.svg" width="340" height="120" />
+    </div>
+  </div>
+
+  <!-- Animação do preloader -->
+  <div>
+    <p class="label">Preview da animação — entra ← freia ← sai →</p>
+    <div class="box-screen">
+      <div class="track-line"></div>
+      <div class="track-dashes"></div>
+
+      <div class="car-outer">
+        <div class="car-inner">
+          <img src="f1-car.svg" width="340" height="120" draggable="false" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

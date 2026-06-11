@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 120">
+  <defs>
+    <linearGradient id="bodyG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#ff6b7a"/>
+      <stop offset="55%"  stop-color="#e63946"/>
+      <stop offset="100%" stop-color="#9b1b28"/>
+    </linearGradient>
+    <linearGradient id="cockpitG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#ff8591"/>
+      <stop offset="100%" stop-color="#e63946"/>
+    </linearGradient>
+    <linearGradient id="visorG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#bae6fd"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <radialGradient id="wheelG" cx="38%" cy="35%" r="60%">
+      <stop offset="0%"   stop-color="#4a4a5a"/>
+      <stop offset="100%" stop-color="#14141e"/>
+    </radialGradient>
+    <radialGradient id="rimG" cx="40%" cy="38%" r="55%">
+      <stop offset="0%"   stop-color="#ffe566"/>
+      <stop offset="100%" stop-color="#c9920a"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Flip horizontal: carro agora olha para a direita -->
+  <g transform="translate(340,0) scale(-1,1)">
+
+    <!-- ═══ ASA DIANTEIRA (atrás de tudo) ═══ -->
+    <path d="M 6,80 L 66,72 L 66,80 L 6,87 Z"
+          fill="#0d0d16"/>
+    <path d="M 6,80 L 66,72 L 66,75 L 6,83 Z"
+          fill="#e63946" opacity="0.85"/>
+    <rect x="4"  y="79" width="5" height="9" rx="2.5" fill="#0d0d16"/>
+    <rect x="63" y="71" width="5" height="9" rx="2.5" fill="#0d0d16"/>
+
+    <!-- ═══ CORPO PRINCIPAL ═══ -->
+    <path d="
+      M 62,84
+      L 62,62
+      Q 66,52 82,48
+      L 122,44
+      L 206,42
+      Q 228,42 244,50
+      L 260,62
+      L 263,72
+      L 263,84
+      Q 262,90 254,91
+      L 70,91
+      Q 62,90 62,84
+      Z
+    " fill="url(#bodyG)" stroke="#0d0d16" stroke-width="3.5" stroke-linejoin="round"/>
+
+    <!-- reflexo no topo do corpo -->
+    <path d="
+      M 82,48  L 122,45  L 206,43  L 242,51
+      L 236,57  L 206,49  L 122,51  L 82,55  Z
+    " fill="white" opacity="0.2"/>
+
+    <!-- listra branca central -->
+    <path d="M 144,43 L 164,43 L 162,91 L 146,91 Z" fill="white" opacity="0.1"/>
+
+    <!-- ═══ CONE DO NARIZ (cor sólida — gradiente horizontal seria invertido pelo flip) ═══ -->
+    <path d="
+      M 62,62
+      L 36,68
+      L 30,75
+      L 36,80
+      L 62,84
+      Z
+    " fill="#b01020" stroke="#0d0d16" stroke-width="3" stroke-linejoin="round"/>
+
+    <!-- ═══ COCKPIT / CAPACETE ═══ -->
+    <path d="
+      M 134,52
+      Q 132,24 155,20
+      Q 178,24 176,52
+      Z
+    " fill="url(#cockpitG)" stroke="#0d0d16" stroke-width="3.5" stroke-linejoin="round"/>
+
+    <!-- viseira -->
+    <path d="
+      M 140,50
+      Q 140,31 155,28
+      Q 170,31 170,50
+      Q 163,41 155,40
+      Q 147,41 140,50
+      Z
+    " fill="url(#visorG)" stroke="#0369a1" stroke-width="1.5"/>
+    <path d="
+      M 144,44
+      Q 144,33 155,30
+      Q 161,32 163,38
+      Q 157,32 155,32
+      Q 147,34 145,43
+      Z
+    " fill="white" opacity="0.5"/>
+
+    <!-- ═══ BUMP DO MOTOR ═══ -->
+    <path d="M 195,46 Q 218,40 240,48 L 238,56 Q 218,48 196,54 Z"
+          fill="#c1121f" opacity="0.45"/>
+
+    <!-- ═══ ASA TRASEIRA ═══ -->
+    <rect x="254" y="46" width="5" height="30" rx="2.5" fill="#0d0d16"/>
+    <rect x="274" y="46" width="5" height="30" rx="2.5" fill="#0d0d16"/>
+    <rect x="247" y="36" width="40" height="12" rx="6" fill="#0d0d16"/>
+    <rect x="249" y="36" width="38" height="7"  rx="3.5" fill="#e63946" opacity="0.75"/>
+    <rect x="245" y="34" width="5" height="16" rx="2.5" fill="#0d0d16"/>
+    <rect x="283" y="34" width="5" height="16" rx="2.5" fill="#0d0d16"/>
+
+    <!-- ═══ RODA DIANTEIRA (por cima de tudo) ═══ -->
+    <!-- Após flip: cx=94 fica visual cx=246 (lado direito = frente) -->
+    <circle cx="94" cy="86" r="26" fill="url(#wheelG)" stroke="#0d0d16" stroke-width="3"/>
+    <circle cx="94" cy="86" r="17" fill="#1e1e2e"/>
+    <circle cx="94" cy="86" r="10" fill="url(#rimG)"/>
+    <circle cx="94" cy="86" r="4"  fill="#b07a08"/>
+    <line x1="94" y1="70" x2="94" y2="76" stroke="#c9920a" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="94" y1="96" x2="94" y2="102" stroke="#c9920a" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="78" y1="86" x2="84" y2="86" stroke="#c9920a" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="104" y1="86" x2="110" y2="86" stroke="#c9920a" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- ═══ RODA TRASEIRA (por cima de tudo) ═══ -->
+    <!-- Após flip: cx=242 fica visual cx=98 (lado esquerdo = traseira) -->
+    <circle cx="242" cy="86" r="26" fill="url(#wheelG)" stroke="#0d0d16" stroke-width="3"/>
+    <circle cx="242" cy="86" r="17" fill="#1e1e2e"/>
+    <circle cx="242" cy="86" r="10" fill="url(#rimG)"/>
+    <circle cx="242" cy="86" r="4"  fill="#b07a08"/>
+    <line x1="242" y1="70" x2="242" y2="76" stroke="#c9920a" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="242" y1="96" x2="242" y2="102" stroke="#c9920a" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="226" y1="86" x2="232" y2="86" stroke="#c9920a" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="252" y1="86" x2="258" y2="86" stroke="#c9920a" stroke-width="2.5" stroke-linecap="round"/>
+
+  </g>
+
+  <!-- ═══ SOMBRA NO CHÃO ═══ -->
+  <ellipse cx="168" cy="116" rx="155" ry="5" fill="#000" opacity="0.18"/>
+</svg>
